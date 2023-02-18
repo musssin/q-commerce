@@ -1,9 +1,23 @@
 <script setup lang="ts">
-import TheWelcome from "../components/TheWelcome.vue";
+
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <v-col cols="12" >
+    <v-col cols="12" class="block-top">
+      <div class=" text-light-blue-lighten-5 pt-16 pa-2" color="">Онлаин - магазин<br/> Электро - бытовой техники
+        <br/><span class="text-h6">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum quasi sunt deleniti quae illum et, debitis nam natus veniam sapiente ut! Quisquam minus delectus ex id deleniti eaque placeat dignissimos?</span>
+      </div>
+    </v-col>
+  </v-col>
 </template>
+<style>
+.block-top{
+  background-image: url('../src/assets/blue_blur.jpg');
+  background-size: cover;
+  height: 600px;
+  font-family:  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-style:  normal;
+  font-weight:bolder;
+  font-size: xx-large;
+}</style>

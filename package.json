@@ -17,7 +17,12 @@
     "vue-router": "^4.1.6",
     "vuetify": "^3.1.5"
   },
+  "prettier": {
+    "singleAttributePerLine": true,
+    "singleQuote": true
+  },
   "devDependencies": {
+    "@mdi/font": "^7.1.96",
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/jsdom": "^20.0.1",
     "@types/node": "^18.11.12",
