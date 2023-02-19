@@ -8,6 +8,16 @@
     <title>Vite App</title>
   </head>
   <body>
+    
+    <script>
+      // Initialize Parse
+      // console.log(process);
+      const PARSE_APP_URL = "https://parseapi.back4app.com/";
+      const PARSE_APP_ID = "uK1hp9Bui1fOFXSSUIWOPEUcSTfZXKPhcCXx3AAh";
+      const PARSE_JS_KEY = "rGCO612Wsyi7YxORG74XAndUlv4LYUpp4pyvu1v3";
+        Parse.initialize(PARSE_APP_ID, PARSE_JS_KEY); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+        Parse.serverURL = PARSE_APP_URL;
+    </script>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>

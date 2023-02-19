@@ -10,10 +10,8 @@
             <v-col cols="6" v-if="width > 800">
                 <Navigation class="pl-2" />
             </v-col>
-            <v-col cols="2" class=" pl-2" v-if="width > 800">
-                <!-- <v-icon icon="mdi-cart" class=""></v-icon>
-                Корзина -->
-                <VBtn :flat="true" prepend-icon="mdi-cart">Корзина</VBtn>
+            <v-col cols="2" class="align-end pl-2" v-if="width > 800">
+                <VBtn :flat="true" prepend-icon="mdi-cart" class="me-auto" >Корзина</VBtn>
             </v-col>
             <v-col cols="2" class="pa-1 pl-2" v-if="width < 800">
                 <v-icon icon="mdi-menu" class=""></v-icon>
@@ -21,10 +19,12 @@
             </v-col>
         </v-row>
     </v-container>
+    <AuthModal/>
 </template>
 <script setup lang="ts">
 import { useDisplay } from 'vuetify'
 import SearchInput from './inputs/SearchInput.vue';
+import AuthModal from './modals/AuthModal.vue';
 import Navigation from './Navigation.vue';
 const { width } = useDisplay()
 
