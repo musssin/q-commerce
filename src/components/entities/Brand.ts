@@ -1,7 +1,8 @@
+import type { Guid } from 'guid-ts';
 class Brand {
-    id: string;
+    id: Guid;
     name: string;
-    constructor(id: string, name: string) {
+    constructor(id: Guid, name: string) {
         this.id = id;
         this.name = name;
     }
