@@ -4,13 +4,13 @@ import { DataService } from '@/components/services/DataService';
 import type Category from '@/components/entities/Category';
 import type Brand from '@/components/entities/Brand';
 export const useCategoryStore = defineStore('category', () => {
-  const categories = ref(new Array<Category>());
-  const brands = ref(new Array<Brand>);
+  const categories = ref(new Array<String>());
+  const brands = ref(new Array<String>);
   async function getCategories() {
-    categories.value = DataService.getCategories();
+    categories.value = await DataService.getCategories();
   }
   async function getBrands() {
-    brands.value = DataService.getBrands();
+    brands.value = await  DataService.getBrands();
   }
 
   return { categories, brands, getCategories, getBrands };

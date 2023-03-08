@@ -8,14 +8,14 @@
           <v-expansion-panel-text>
             <v-list>
               <v-list-item-group v-model="selectedCategory">
-                <v-list-item v-for="category in categoriesStore.categories" :key="category.id" :value="category.id">
+                <v-list-item v-for="category in categoriesStore.categories" :key="'1'+category" >
                     <template v-slot:prepend="{ isActive }">
 
                       <v-list-item-action start>
                         <v-checkbox-btn :model-value="isActive"></v-checkbox-btn>
                       </v-list-item-action>
                     </template>
-                    <v-list-item-title>{{ category.name }}</v-list-item-title>
+                    <v-list-item-title>{{ $t(category) }}</v-list-item-title>
                 </v-list-item>
               </v-list-item-group>
             </v-list>
@@ -26,14 +26,14 @@
           <v-expansion-panel-text>
             <v-list>
               <v-list-item-group v-model="selectedBrand">
-                <v-list-item v-for="brand in categoriesStore.brands" :key="brand.id" :value="brand.name">
+                <v-list-item v-for="brand in categoriesStore.brands" :key="'2'+brand" >
                   <template v-slot:prepend="{ isActive }">
 
                       <v-list-item-action start>
                         <v-checkbox-btn :model-value="isActive"></v-checkbox-btn>
                       </v-list-item-action>
                     </template>
-                    <v-list-item-title>{{ brand.name }}</v-list-item-title>
+                    <v-list-item-title>{{ brand }}</v-list-item-title>
                 </v-list-item>
               </v-list-item-group>
             </v-list>
@@ -50,8 +50,8 @@ import { useCategoryStore } from '@/stores/data';
 import { ref, onMounted } from 'vue';
 const { width } = useDisplay();
 const panel = ref([0,1]);
-const selectedCategory = ref({});
-const selectedBrand = ref({});
+const selectedCategory = ref('');
+const selectedBrand = ref('');
 const categoriesStore = useCategoryStore();
 onMounted(() => {
   if (categoriesStore.categories.length === 0) {

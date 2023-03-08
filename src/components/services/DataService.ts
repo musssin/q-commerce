@@ -1,21 +1,47 @@
 import Brand from '../entities/Brand'
-import Category from '../entities/Category'
 import { Guid } from 'guid-ts';
+import axios from 'axios'
+import Product from '../entities/Product';
 export const DataService = {
-    getCategories(): Array<Category> {
-        const arr = [];
-        for (let index = 0; index < 6; index++) {
-            const element =new Category(Guid.newGuid(), 'Category' + index)
-            arr.push(element);
+    async getCategories(): Promise<Array<String>> {
+        const arr: String[] = [];
+        try {
+            const response = await axios.get('/products/categories')
+            response.data.forEach((el: String) => {
+                arr.push(el);
+            });
+        } catch (error) {
+            console.log(error);
+
         }
         return arr;
     },
-    getBrands(): Array<Brand> {
-        const arr = [];
-        for (let index = 0; index < 6; index++) {
-            const element =new Brand(Guid.newGuid(), 'Brand' + index)
-            arr.push(element);
+    async getBrands(): Promise<Array<String>> {
+        const arr: String[] = [];
+        try {
+            const response = await axios.get('/products/brands')
+            response.data.forEach((el: String) => {
+                arr.push(el);
+            });
+        } catch (error) {
+            console.log(error);
+
         }
         return arr;
+    },
+    async getProducts(): Promise<Array<Product>> {
+        const arr: Product[] = []
+        try {
+            const response = await axios.get('/products')
+            response.data.products?.forEach((el: Product) => {
+                const p = new Product(el)
+                arr.push(p);
+            });
+        } catch (error) {
+            console.log(error);
+
+        }
+
+        return arr
     }
 }
