@@ -1,16 +1,26 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watchEffect } from 'vue';
 import Filters from '@/components/Filters.vue';
 import type Product from '@/components/entities/Product';
 import { DataService } from '@/components/services/DataService'
 import ProductVue from '@/components/cards/Product.vue';
-import type Category from '@/components/entities/Category';
+import { useFilterStore } from '@/stores/filters';
+const filterStore = useFilterStore()
 const products = ref(new Array<Product>())
-const categories = ref(new Array<Category>())
-const loading = ref(true)
+const filteredProducts = ref(new Array<Product>())
+const loading = ref(false)
 onMounted(async () => {
   products.value = await DataService.getProducts()
   loading.value = false
+})
+watchEffect(()=>{
+  filteredProducts.value = products.value
+  if (filterStore.selectedCategories.length > 0) {
+    filteredProducts.value = filteredProducts.value.filter(p => filterStore.selectedCategories.includes(p.category))
+  }
+  if (filterStore.selectedBrands.length > 0) {
+    filteredProducts.value = filteredProducts.value.filter(p => filterStore.selectedBrands.includes(p.brand))
+  }
 })
 </script>
 
@@ -29,21 +39,9 @@ onMounted(async () => {
     ></v-progress-circular>
       </v-row>
       <v-row v-else>
-        <ProductVue v-for="product of products" v-bind:product="product" class="col-3"  @click="" />
+        <ProductVue v-for="product of filteredProducts" v-bind:product="product" class="col-3"  @click="" />
       </v-row>
 
     </v-col>
   </v-row>
 </template>
-<style>
-.block-top {
-  background-image: url('../src/assets/blue_blur.jpg');
-  background-size: cover;
-  height: 600px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
-  font-style: normal;
-  font-weight: bolder;
-  font-size: xx-large;
-}
-</style>

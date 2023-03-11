@@ -22,7 +22,7 @@ const items = [
   },
   {
     label: 'Каталог',
-    route: 'categories',
+    route: 'products',
   },
   {
     label: 'О проекте',

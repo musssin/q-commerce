@@ -65,6 +65,7 @@
             color="white"
             class="bg-primary ma-1"
             block
+            
             @click="register"
             >Регистрация</v-btn
           >
