@@ -1,17 +1,8 @@
 <template>
     <v-card
-    :loading="loading"
     class="mx-1 my-3 "
     max-width="300"
   >
-    <template v-slot:loader="{ isActive }">
-      <v-progress-linear
-        :active="isActive"
-        color="deep-purple"
-        height="4"
-        indeterminate
-      ></v-progress-linear>
-    </template>
 
     <v-img
       cover

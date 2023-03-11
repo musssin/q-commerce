@@ -7,8 +7,10 @@ import ProductVue from '@/components/cards/Product.vue';
 import type Category from '@/components/entities/Category';
 const products = ref(new Array<Product>())
 const categories = ref(new Array<Category>())
+const loading = ref(true)
 onMounted(async () => {
   products.value = await DataService.getProducts()
+  loading.value = false
 })
 </script>
 
@@ -18,8 +20,16 @@ onMounted(async () => {
       <Filters />
     </v-col>
     <v-col cols="9" sm="12" md="9">
-      <v-row>
-        <ProductVue v-for="product of products" v-bind:product="product" @click="" class="col-3" />
+      <v-row v-if="loading" class="justify-center mt-16">
+        <v-progress-circular
+        class="col-6"
+      :size="50"
+      color="primary"
+      indeterminate
+    ></v-progress-circular>
+      </v-row>
+      <v-row v-else>
+        <ProductVue v-for="product of products" v-bind:product="product" class="col-3"  @click="" />
       </v-row>
 
     </v-col>
