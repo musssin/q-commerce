@@ -1,19 +1,31 @@
-import { ref } from 'vue';
+import { ref, } from 'vue';
 import { defineStore } from 'pinia';
+import { useStorage } from '@vueuse/core'
+import axios from 'axios';
 export const useAuthStore = defineStore('auth', () => {
+  
   const showDialog = ref(false);
-  const user = ref({});
+  let user = useStorage('user',{});
+  const isAuthorised = useStorage('isAuthorised',ref(false));
   async function getCurrentUser(): Promise<Object> {
     return {};
   }
 
   async function login(username: string, password: string) {
-    try {
-      getCurrentUser();
-      return true;
-    } catch (error: any) {
-      return false;
-    }
+      const body = {
+        username: username,
+        password: password
+      }
+      axios.post('auth/login', JSON.stringify(body))
+        .then((response) => {
+          user.value = response.data
+          isAuthorised.value = true
+          showDialog.value = false
+        })
+  }
+  function logout(){
+    user.value = {}
+    isAuthorised.value = false
   }
   async function register(username: string, email: string, password: string) {
     // const user = new Parse.User();
@@ -26,6 +38,9 @@ export const useAuthStore = defineStore('auth', () => {
       return false;
     }
   }
+  function toggleDialog(){
+    showDialog.value = !showDialog.value
+  }
 
-  return { user, login, register, showDialog };
+  return { user, login, register, showDialog, toggleDialog, isAuthorised, logout };
 });

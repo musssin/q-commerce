@@ -1,5 +1,3 @@
-import Brand from '../entities/Brand'
-import { Guid } from 'guid-ts';
 import axios from 'axios'
 import Product from '../entities/Product';
 export const DataService = {

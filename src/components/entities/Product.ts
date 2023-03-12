@@ -5,7 +5,7 @@ class Product {
     price!: Number;
     description!: string;
     brand!: string;
-    category!: Guid;
+    category!: string;
     thumbnail!: string;
     rating!: Number;
     images!: [];

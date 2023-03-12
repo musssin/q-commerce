@@ -36,7 +36,7 @@
       </v-row>
 
       <div class="my-4 text-subtitle-1">
-        {{ product?.price * 400 }} KZT
+        {{ (product?.price) * 400 }} KZT
       </div>
 
       <div>{{ product?.description }}</div>

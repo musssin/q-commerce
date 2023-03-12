@@ -27,10 +27,6 @@ const items = [
   {
     label: 'О проекте',
     route: '',
-  },
-  {
-    label: 'Связаться с нами',
-    route: '',
-  },
+  }
 ];
 </script>

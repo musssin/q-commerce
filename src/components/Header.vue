@@ -11,13 +11,13 @@
         <SearchInput />
       </v-col>
       <v-col
-        cols="6"
+        cols="5"
         v-if="width > 800"
       >
         <Navigation class="pl-2" />
       </v-col>
       <v-col
-        cols="2"
+        cols="1"
         class="align-end pl-2"
         v-if="width > 800"
       >
@@ -27,6 +27,34 @@
           class="me-auto"
           >Корзина</VBtn
         >
+      </v-col>
+      <v-col
+        cols="auto"
+        class="align-end pl-2"
+        v-if="width > 800"
+      >
+      <v-btn
+      v-if="!auth.isAuthorised"
+      prepend-icon="mdi-account"
+      flat
+      @click="auth.toggleDialog()"
+    >Воити</v-btn>
+    
+      <v-btn
+      v-else
+      append-icon="mdi-arrow-down"
+      
+      flat
+    >{{ auth.user?.username }}
+
+      <v-menu activator="parent">
+        <v-list>
+          <v-list-item @click="auth.logout()">
+            <v-list-item-title>Выйти</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </v-btn>
       </v-col>
       <v-col
         cols="2"
@@ -44,9 +72,11 @@
   <AuthModal />
 </template>
 <script setup lang="ts">
+import { useAuthStore } from '@/stores/auth';
 import { useDisplay } from 'vuetify';
 import SearchInput from './inputs/SearchInput.vue';
 import AuthModal from './modals/AuthModal.vue';
 import Navigation from './Navigation.vue';
 const { width } = useDisplay();
+const auth = useAuthStore()
 </script>
