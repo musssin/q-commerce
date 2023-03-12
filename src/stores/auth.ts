@@ -1,11 +1,13 @@
 import { ref, } from 'vue';
 import { defineStore } from 'pinia';
 import { useStorage } from '@vueuse/core'
+import {useCartStore} from './cart'
 import axios from 'axios';
 export const useAuthStore = defineStore('auth', () => {
   
   const showDialog = ref(false);
   let user = useStorage('user',{});
+  const cartStore = useCartStore()
   const isAuthorised = useStorage('isAuthorised',ref(false));
   async function getCurrentUser(): Promise<Object> {
     return {};
@@ -21,6 +23,7 @@ export const useAuthStore = defineStore('auth', () => {
           user.value = response.data
           isAuthorised.value = true
           showDialog.value = false
+          cartStore.getCart(user.value?.id)
         })
   }
   function logout(){
@@ -28,10 +31,6 @@ export const useAuthStore = defineStore('auth', () => {
     isAuthorised.value = false
   }
   async function register(username: string, email: string, password: string) {
-    // const user = new Parse.User();
-    // user.set('email', email);
-    // user.set('password', password);
-    // user.set('username', username);
     try {
       return true;
     } catch (error) {
