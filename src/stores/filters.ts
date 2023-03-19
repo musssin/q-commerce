@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import { DataService } from '@/components/services/DataService';
+import { DataService } from '@/services/DataService';
 export const useFilterStore = defineStore('category', () => {
   const categories = ref();
   const brands = ref();

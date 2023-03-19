@@ -43,7 +43,9 @@
     </v-card-text>
 
     <v-divider class="mx-4 mb-1"></v-divider>
+    {{ cart.cart }}
     <v-card-actions>
+      
       <v-btn v-text="'Добавить в корзину'" color="accent" class="" @click="cart.addToCart(product)"/>
       <v-btn v-text="'Купить'" color="primary" class=""/>
     </v-card-actions>
@@ -52,7 +54,7 @@
   <script setup lang="ts">
   import { useDisplay } from 'vuetify';
   import {ref} from 'vue';
-import Product from '../entities/Product';
+import Product from '../../entities/Product';
 import {useCartStore} from '../../stores/cart'
   const { width } = useDisplay();
   const loading = ref(false);

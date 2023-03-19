@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, watchEffect } from 'vue';
 import Filters from '@/components/Filters.vue';
-import type Product from '@/components/entities/Product';
-import { DataService } from '@/components/services/DataService'
+import type Product from '@/entities/Product';
+import { DataService } from '@/services/DataService'
 import ProductVue from '@/components/cards/Product.vue';
 import { useFilterStore } from '@/stores/filters';
 const filterStore = useFilterStore()
