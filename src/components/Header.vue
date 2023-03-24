@@ -25,6 +25,7 @@
           :flat="true"
           prepend-icon="mdi-cart"
           class="me-auto"
+          @click="router.push({ name: 'cart' })"
           >Корзина</VBtn
         >
       </v-col>
@@ -77,6 +78,7 @@ import { useDisplay } from 'vuetify';
 import SearchInput from './inputs/SearchInput.vue';
 import AuthModal from './modals/AuthModal.vue';
 import Navigation from './Navigation.vue';
+import router from '@/router';
 const { width } = useDisplay();
 const auth = useAuthStore()
 </script>

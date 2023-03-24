@@ -1,3 +1,4 @@
+import Cart from '@/entities/Cart';
 import axios from 'axios'
 import Product from '../entities/Product';
 export const DataService = {
@@ -41,5 +42,25 @@ export const DataService = {
         }
 
         return arr
+    },
+    async getCart(userId: number): Promise<Cart>{
+        let cart = Cart.emptyInstance()
+        try {
+            const response = await axios.get(`carts/user/${userId}`)
+            cart = new Cart(response.data?.carts[0])
+        } catch (error) {
+            console.log(error);
+
+        }
+        return cart
+    },
+    async updateCart(cart: Cart){
+        try {
+            axios.put(`carts/${cart.id}`, JSON.stringify({products: cart.products}))
+        } catch (err) {
+            console.log(err);
+            
+        }
+        
     }
 }

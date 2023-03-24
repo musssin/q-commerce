@@ -1,24 +1,25 @@
 import { ref, } from 'vue';
 import { defineStore } from 'pinia';
 import { useStorage } from '@vueuse/core'
+import { DataService } from '@/services/DataService';
 import axios from 'axios';
 import type Product from '@/entities/Product';
 import Cart from '@/entities/Cart';
 export const useCartStore = defineStore('cart', () => {
   let cart = useStorage('cart', Cart.emptyInstance());
 
-  function getCart(userId: number) {
-    axios.get(`carts/user/${userId}`)
-      .then((response) => {
-        cart.value = new Cart(response.data?.carts[0])
-        console.log(response.data);
-        
-      })
+  async function getCart(userId: number) {
+    cart.value = await DataService.getCart(userId)
   }
   function addToCart(product: Product){
     cart.value.products.push(product)
     
-    axios.put(`carts/${cart.value.id}`, JSON.stringify({products: cart.value.products}))
+    DataService.updateCart(cart.value)
   }
-  return { getCart, addToCart, cart };
+  function removeFromCart(product: Product){
+    cart.value.products = cart.value.products.filter(p => p.id != product.id)
+    
+    DataService.updateCart(cart.value)
+  }
+  return { getCart, addToCart,removeFromCart,  cart };
 });

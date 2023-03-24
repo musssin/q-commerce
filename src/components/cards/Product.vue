@@ -43,7 +43,6 @@
     </v-card-text>
 
     <v-divider class="mx-4 mb-1"></v-divider>
-    {{ cart.cart }}
     <v-card-actions>
       
       <v-btn v-text="'Добавить в корзину'" color="accent" class="" @click="cart.addToCart(product)"/>
