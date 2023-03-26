@@ -1,6 +1,7 @@
 import Cart from '@/entities/Cart';
 import axios from 'axios'
 import Product from '../entities/Product';
+import { useAuthStore } from '@/stores/auth';
 export const DataService = {
     async getCategories(): Promise<Array<String>> {
         const arr: String[] = [];
@@ -47,7 +48,7 @@ export const DataService = {
         let cart = Cart.emptyInstance()
         try {
             const response = await axios.get(`carts/user/${userId}`)
-            cart = new Cart(response.data?.carts[0])
+            cart = new Cart(response.data.cart)
         } catch (error) {
             console.log(error);
 
@@ -55,8 +56,9 @@ export const DataService = {
         return cart
     },
     async updateCart(cart: Cart){
+        const authStore = useAuthStore()
         try {
-            axios.put(`carts/${cart.id}`, JSON.stringify({products: cart.products}))
+            axios.put(`carts/${cart.id}`, JSON.stringify({products: cart.products, userId: authStore.user.id}))
         } catch (err) {
             console.log(err);
             

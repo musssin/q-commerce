@@ -9,17 +9,33 @@
                 <v-card-title class="text-h5">
                   {{ product?.title }}
                 </v-card-title>
-
-                <v-card-subtitle>{{ product?.category }}</v-card-subtitle>
+                <v-card-subtitle style="color: whitesmoke;opacity: 1; ">{{ product?.price }} KZT</v-card-subtitle>
 
                 <v-card-actions>
                   <v-btn
+                  :disabled="product?.quantity < 2"
                     class="ms-2"
                     variant="outlined"
                     size="small"
-                  >
-                    START RADIO
-                  </v-btn>
+                    @click="changeQuantity('-')"
+                    v-text="'-'"
+                  />
+                  <v-card-subtitle style="color: whitesmoke;opacity: 1; ">{{ product?.quantity }} шт.</v-card-subtitle>
+                  <v-btn
+                    class="ms-1"
+                    variant="outlined"
+                    size="small"
+                    v-text="'+'"
+                    @click="changeQuantity('+')"
+                  />
+                  <v-btn
+                    class="ms-3"
+                    variant="flat"
+                    size="small"
+                    color="black"
+                    icon="mdi-delete"
+                    @click="cart.removeFromCart(product)"
+                  />
                 </v-card-actions>
               </div>
 
@@ -42,8 +58,17 @@ import {useCartStore} from '../../stores/cart'
   const { width } = useDisplay();
   const loading = ref(false);
   const cart = useCartStore()
-  defineProps({
+  const props = defineProps({
     product: Product
   })
+  async function changeQuantity(operation: string) {
+    const p = props.product
+    if (operation === '-') {
+      p.quantity = parseInt(p?.quantity - 1)
+    } else {
+      p.quantity = parseInt(p?.quantity + 1)
+    }
+    cart.setProduct(p)
+  }
   </script>
   

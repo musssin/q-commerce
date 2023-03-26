@@ -8,7 +8,7 @@
         <v-sheet class="text-h5 font-weight-bold pt-1">Q-Commerce</v-sheet>
       </v-col>
       <v-col cols="2">
-        <SearchInput />
+        <!-- <SearchInput /> -->
       </v-col>
       <v-col
         cols="5"
@@ -71,6 +71,7 @@
     </v-row>
   </v-container>
   <AuthModal />
+  <PaymentModal/>
 </template>
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/auth';
@@ -79,6 +80,7 @@ import SearchInput from './inputs/SearchInput.vue';
 import AuthModal from './modals/AuthModal.vue';
 import Navigation from './Navigation.vue';
 import router from '@/router';
+import PaymentModal from './modals/PaymentModal.vue';
 const { width } = useDisplay();
 const auth = useAuthStore()
 </script>

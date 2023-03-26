@@ -9,6 +9,7 @@ class Product {
     thumbnail!: string;
     rating!: Number;
     images!: [];
+  quantity!: number;
     // constructor(id: Number, name: string, brand: string, category: Guid) {
     //     this.id = id;
     //     this.name = name;

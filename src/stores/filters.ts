@@ -6,6 +6,8 @@ export const useFilterStore = defineStore('category', () => {
   const brands = ref();
   const selectedCategories = ref(Array<String>());
   const selectedBrands = ref(Array<String>());
+  const startPrice = ref(0)
+  const endPrice = ref(10000000)
   async function getCategories() {
     if (!categories.value) {
       await fetchCategories()
@@ -38,5 +40,5 @@ export const useFilterStore = defineStore('category', () => {
       selectedBrands.value.push(brand);
     }
   }
-  return { selectedCategories, selectedBrands, getCategories, getBrands, selectCategory, selectBrand };
+  return { selectedCategories, selectedBrands, getCategories, getBrands, selectCategory, selectBrand, startPrice, endPrice };
 });

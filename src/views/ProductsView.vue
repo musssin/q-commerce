@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, watchEffect } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import Filters from '@/components/Filters.vue';
 import type Product from '@/entities/Product';
 import { DataService } from '@/services/DataService'
@@ -7,21 +7,34 @@ import ProductVue from '@/components/cards/Product.vue';
 import { useFilterStore } from '@/stores/filters';
 const filterStore = useFilterStore()
 const products = ref(new Array<Product>())
-const filteredProducts = ref(new Array<Product>())
+// const filteredProducts = ref(new Array<Product>())
 const loading = ref(false)
 onMounted(async () => {
   products.value = await DataService.getProducts()
   loading.value = false
 })
-watchEffect(()=>{
-  filteredProducts.value = products.value
+const filteredProducts =  computed(()=>{
+  let filteredProducts = products.value
   if (filterStore.selectedCategories.length > 0) {
-    filteredProducts.value = filteredProducts.value.filter(p => filterStore.selectedCategories.includes(p.category))
+    filteredProducts = filteredProducts.filter(p => filterStore.selectedCategories.includes(p.category))
   }
   if (filterStore.selectedBrands.length > 0) {
-    filteredProducts.value = filteredProducts.value.filter(p => filterStore.selectedBrands.includes(p.brand))
+    filteredProducts = filteredProducts.filter(p => filterStore.selectedBrands.includes(p.brand))
   }
+    filteredProducts = filteredProducts.filter(p => p.price > filterStore.startPrice && p.price < filterStore.endPrice)
+
+  return filteredProducts
 })
+// watchEffect(async ()=>{
+//   filteredProducts.value = products.value
+//   if (filterStore.selectedCategories.length > 0) {
+//     filteredProducts.value = filteredProducts.value.filter(p => filterStore.selectedCategories.includes(p.category))
+//   }
+//   if (filterStore.selectedBrands.length > 0) {
+//     filteredProducts.value = filteredProducts.value.filter(p => filterStore.selectedBrands.includes(p.brand))
+//   }
+//     filteredProducts.value = filteredProducts.value.filter(p => p.price > filterStore.startPrice && p.price < filterStore.endPrice)
+// })
 </script>
 
 <template>
@@ -38,7 +51,7 @@ watchEffect(()=>{
       indeterminate
     ></v-progress-circular>
       </v-row>
-      <v-row v-else>
+      <v-row v-else class="mt-3">
         <ProductVue v-for="product of filteredProducts" v-bind:product="product" class="col-3"  @click="" />
       </v-row>
 

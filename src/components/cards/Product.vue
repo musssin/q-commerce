@@ -36,7 +36,7 @@
       </v-row>
 
       <div class="my-4 text-subtitle-1">
-        {{ (product?.price) * 400 }} KZT
+        {{ (product?.price) * 1 }} KZT
       </div>
 
       <div>{{ product?.description }}</div>
@@ -45,8 +45,8 @@
     <v-divider class="mx-4 mb-1"></v-divider>
     <v-card-actions>
       
-      <v-btn v-text="'Добавить в корзину'" color="accent" class="" @click="cart.addToCart(product)"/>
-      <v-btn v-text="'Купить'" color="primary" class=""/>
+      <v-btn v-text="'Добавить в корзину'" color="primary" class="" @click="cart.addToCart(product)"/>
+      <!-- <v-btn v-text="'Купить'" color="primary" class=""/> -->
     </v-card-actions>
   </v-card>
   </template>

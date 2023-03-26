@@ -29,13 +29,25 @@ export const useAuthStore = defineStore('auth', () => {
   function logout(){
     user.value = {}
     isAuthorised.value = false
+    cartStore.clearCart()
   }
   async function register(username: string, email: string, password: string) {
-    try {
-      return true;
-    } catch (error) {
-      return false;
-    }
+      const payload = {
+        username,
+        email,
+        password
+      }
+      alert(12)
+      axios.post('/user/add', payload)
+        .then((response) => {
+          user.value  = response.data
+          isAuthorised.value = true
+          showDialog.value = false
+          cartStore.getCart(user.value?.id)
+        })
+        .catch(err =>{
+          console.log(err);
+        })
   }
   function toggleDialog(){
     showDialog.value = !showDialog.value
