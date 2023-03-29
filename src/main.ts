@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 
