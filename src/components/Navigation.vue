@@ -22,15 +22,11 @@ const items = [
   },
   {
     label: 'Каталог',
-    route: 'categories',
+    route: 'products',
   },
   {
     label: 'О проекте',
     route: '',
-  },
-  {
-    label: 'Связаться с нами',
-    route: '',
-  },
+  }
 ];
 </script>

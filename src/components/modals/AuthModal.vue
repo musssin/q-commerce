@@ -1,7 +1,8 @@
 <template>
   <v-dialog
-    v-model="showDialog"
+    v-model="auth.showDialog"
     width="500"
+    @keyup.enter="submit"
   >
     <v-card
       class="ma-3"
@@ -25,7 +26,7 @@
             color="white"
             class="bg-primary ma-1"
             block
-            @click="login"
+            @click="submit"
             >Воити</v-btn
           >
           <v-btn
@@ -65,7 +66,8 @@
             color="white"
             class="bg-primary ma-1"
             block
-            @click="register"
+            
+            @click="submit"
             >Регистрация</v-btn
           >
           <v-btn
@@ -84,7 +86,6 @@
 import { ref } from 'vue';
 import { useAuthStore } from '@/stores/auth';
 const auth = useAuthStore();
-const showDialog = auth.showDialog;
 const mode = ref('login');
 async function setMode(m: string) {
   mode.value = m;
@@ -93,27 +94,11 @@ const email = ref('');
 const password = ref('');
 const username = ref('');
 
-async function login() {
-  auth.login(username.value, password.value);
+async function submit(){
+  if (mode.value === 'login') {
+    auth.login(username.value, password.value);
+  } else {
+    auth.register(username.value, email.value, password.value);
+  }
 }
-async function register() {
-  auth.register(username.value, email.value, password.value);
-}
-// async function login() {
-//     const parseQuery: Parse.Query = new Parse.Query('User');
-//     parseQuery.contains('email', email.value.toString());
-//     parseQuery.contains('password', password.value.toString());
-//     try {
-//         let todos: Array<any> = await parseQuery.find();
-//         if (todos.length < 1) {
-//             throw new Error("Не найден указанный пользователь");
-
-//         }
-//         return true;
-//     } catch (error) {
-//         // Error can be caused by lack of Internet connection
-//         alert(`Error! ${error}`);
-//         return false;
-//     };
-// }
 </script>

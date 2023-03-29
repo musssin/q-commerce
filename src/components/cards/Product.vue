@@ -1,17 +1,8 @@
 <template>
     <v-card
-    :loading="loading"
     class="mx-1 my-3 "
     max-width="300"
   >
-    <template v-slot:loader="{ isActive }">
-      <v-progress-linear
-        :active="isActive"
-        color="deep-purple"
-        height="4"
-        indeterminate
-      ></v-progress-linear>
-    </template>
 
     <v-img
       cover
@@ -45,7 +36,7 @@
       </v-row>
 
       <div class="my-4 text-subtitle-1">
-        {{ product?.price * 400 }} KZT
+        {{ (product?.price) * 1 }} KZT
       </div>
 
       <div>{{ product?.description }}</div>
@@ -53,16 +44,20 @@
 
     <v-divider class="mx-4 mb-1"></v-divider>
     <v-card-actions>
-      <v-btn v-text="'Купить'" color="primary" class=""/>
+      
+      <v-btn v-text="'Добавить в корзину'" color="primary" class="" @click="cart.addToCart(product)"/>
+      <!-- <v-btn v-text="'Купить'" color="primary" class=""/> -->
     </v-card-actions>
   </v-card>
   </template>
   <script setup lang="ts">
   import { useDisplay } from 'vuetify';
   import {ref} from 'vue';
-import Product from '../entities/Product';
+import Product from '../../entities/Product';
+import {useCartStore} from '../../stores/cart'
   const { width } = useDisplay();
   const loading = ref(false);
+  const cart = useCartStore()
   defineProps({
     product: Product
   })

@@ -5,10 +5,11 @@ class Product {
     price!: Number;
     description!: string;
     brand!: string;
-    category!: Guid;
+    category!: string;
     thumbnail!: string;
     rating!: Number;
     images!: [];
+  quantity!: number;
     // constructor(id: Number, name: string, brand: string, category: Guid) {
     //     this.id = id;
     //     this.name = name;

@@ -1,31 +1,57 @@
-import { ref } from 'vue';
+import { ref, } from 'vue';
 import { defineStore } from 'pinia';
+import { useStorage } from '@vueuse/core'
+import {useCartStore} from './cart'
+import axios from 'axios';
 export const useAuthStore = defineStore('auth', () => {
+  
   const showDialog = ref(false);
-  const user = ref({});
+  let user = useStorage('user',{});
+  const cartStore = useCartStore()
+  const isAuthorised = useStorage('isAuthorised',ref(false));
   async function getCurrentUser(): Promise<Object> {
     return {};
   }
 
   async function login(username: string, password: string) {
-    try {
-      getCurrentUser();
-      return true;
-    } catch (error: any) {
-      return false;
-    }
+      const body = {
+        username: username,
+        password: password
+      }
+      axios.post('auth/login', JSON.stringify(body))
+        .then((response) => {
+          user.value = response.data
+          isAuthorised.value = true
+          showDialog.value = false
+          cartStore.getCart(user.value?.id)
+        })
+  }
+  function logout(){
+    user.value = {}
+    isAuthorised.value = false
+    cartStore.clearCart()
   }
   async function register(username: string, email: string, password: string) {
-    // const user = new Parse.User();
-    // user.set('email', email);
-    // user.set('password', password);
-    // user.set('username', username);
-    try {
-      return true;
-    } catch (error) {
-      return false;
-    }
+      const payload = {
+        username,
+        email,
+        password
+      }
+      alert(12)
+      axios.post('/user/add', payload)
+        .then((response) => {
+          user.value  = response.data
+          isAuthorised.value = true
+          showDialog.value = false
+          cartStore.getCart(user.value?.id)
+        })
+        .catch(err =>{
+          console.log(err);
+        })
+  }
+  function toggleDialog(){
+    showDialog.value = !showDialog.value
   }
 
-  return { user, login, register, showDialog };
+  return { user, login, register, showDialog, toggleDialog, isAuthorised, logout };
 });
