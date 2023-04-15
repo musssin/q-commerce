@@ -14,12 +14,13 @@ import './assets/main.css';
 const vuetify = createVuetify({
   components,
   directives,
+  
   theme: {
     themes: {
       light: {
         colors: {
           primary: '#1F7087'
-        }
+        },
       }
     }
   },

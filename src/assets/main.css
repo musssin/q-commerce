@@ -1,5 +1,7 @@
 @import './base.css';
-
+.v-application {
+  font-family: 'Ubuntu', sans-serif !important;
+}
 #app {
   max-width: 1280px;
   margin: 0 auto;

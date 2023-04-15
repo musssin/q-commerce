@@ -19,7 +19,7 @@
 
       <v-card-actions class="col">
         <v-col>
-          <v-btn color="white" class="bg-primary ma-1" block @click="submit">Воити</v-btn>
+          <v-btn color="white" class="bg-primary ma-1" block @click="submit">Купить</v-btn>
         </v-col>
       </v-card-actions>
     </v-card>
@@ -53,7 +53,7 @@ const cvv = ref('')
 const showSnackBar = ref(false)
 function submit() {
   cart.showPaymentDialog = false
-  cart.removeAllFromCart()
+  cart.createOrder()
   showSnackBar.value = true
 }
 </script>

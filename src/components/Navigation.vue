@@ -7,6 +7,7 @@
       <VBtn
         :flat="true"
         align-self="end"
+        :active="$route.name === i.route"
         @click="router.push({ name: i.route })"
         >{{ i.label }}</VBtn
       >
@@ -25,8 +26,12 @@ const items = [
     route: 'products',
   },
   {
-    label: 'О проекте',
-    route: '',
+    label: 'Мои заказы',
+    route: 'orders',
+  },
+  {
+    label: 'Админ',
+    route: 'admin',
   }
 ];
 </script>
