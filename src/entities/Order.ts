@@ -2,7 +2,7 @@
 class Order {
     id!: Number;
     userId!: Number;
-    total!: Number ;
+    total!: number ;
     totalProducts!: Number;
     totalQuantity!: Number;
     products!: Array<any>;
