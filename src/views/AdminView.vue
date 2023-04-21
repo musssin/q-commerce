@@ -91,7 +91,7 @@ const data = computed(() => {
       <v-tab :value="2">Управление товарами</v-tab>
     </v-tabs>
     <v-window v-model="tab">
-      <v-window-item>
+      <v-window-item :value="1">
         <v-container fluid v-if="!loading">
           <v-row>
             <v-col cols="12" md="7">
