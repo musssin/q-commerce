@@ -55,6 +55,7 @@
   import {ref} from 'vue';
 import Product from '../../entities/Product';
 import {useCartStore} from '../../stores/cart'
+import { DataService } from '@/services/DataService';
   const { width } = useDisplay();
   const loading = ref(false);
   const cart = useCartStore()
@@ -71,7 +72,7 @@ import {useCartStore} from '../../stores/cart'
     } else {
       p.balance = p?.balance + 1
     }
-    cart.setProduct(p)
+    DataService.updateProduct(p)
   }
   </script>
   
