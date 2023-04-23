@@ -46,6 +46,14 @@ export const DataService = {
 
         return arr
     },
+    async updateProduct(product: Product) {
+        const authStore = useAuthStore()
+        try {
+            axios.put(`products/${product.id}`, JSON.stringify({ product}))
+        } catch (err) {
+            console.log(err);
+        }
+    },
     async getCart(userId: number): Promise<Cart> {
         let cart = Cart.emptyInstance()
         try {

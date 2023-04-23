@@ -10,6 +10,7 @@ class Product {
     rating!: Number;
     images!: [];
   quantity!: number;
+  balance!:number;
     // constructor(id: Number, name: string, brand: string, category: Guid) {
     //     this.id = id;
     //     this.name = name;

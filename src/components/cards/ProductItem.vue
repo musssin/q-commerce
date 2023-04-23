@@ -13,20 +13,20 @@
 
                 <v-card-actions>
                   <v-btn
-                  :disabled="product?.quantity < 2"
+                  :disabled="product?.balance === 0 "
                     class="ms-2"
                     variant="outlined"
                     size="small"
-                    @click="changeQuantity('-')"
+                    @click="changeBalance('-')"
                     v-text="'-'"
                   />
-                  <v-card-subtitle style="color: black;opacity: 1; ">{{ product?.quantity }} шт.</v-card-subtitle>
+                  <v-card-subtitle style="color: black;opacity: 1; ">{{ product?.balance }} шт.</v-card-subtitle>
                   <v-btn
                     class="ms-1"
                     variant="outlined"
                     size="small"
                     v-text="'+'"
-                    @click="changeQuantity('+')"
+                    @click="changeBalance('+')"
                   />
                   <v-btn
                     class="ms-3"
@@ -61,12 +61,15 @@ import {useCartStore} from '../../stores/cart'
   const props = defineProps({
     product: Product
   })
-  async function changeQuantity(operation: string) {
+  async function changeBalance(operation: string) {
+    if (!props.product) {
+      return
+    }
     const p = props.product
     if (operation === '-') {
-      p.quantity = parseInt(p?.quantity - 1)
+      p.balance = p?.balance - 1
     } else {
-      p.quantity = parseInt(p?.quantity + 1)
+      p.balance = p?.balance + 1
     }
     cart.setProduct(p)
   }
