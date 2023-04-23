@@ -21,6 +21,7 @@ const users = ref(new Array<User>())
 onMounted(async () => {
   orders.value = await DataService.getOrders()
   users.value = await DataService.getAllUsers()
+  DataService.getProducts().then((result) => products.value = result)
   loading.value = false
 })
 // const ordersData = computed(()=> {
@@ -80,6 +81,9 @@ const data = computed(() => {
     datasets: datasets
   }
 })
+import ProductItem from '@/components/cards/ProductItem.vue';
+import type Product from '@/entities/Product';
+const products = ref(Array<Product>())
 </script>
 
 <template>
@@ -117,42 +121,48 @@ const data = computed(() => {
               </v-btn>
               <v-row>
                 <v-col cols="4">
-                  <v-card >
-                <template v-slot:title>
-                  {{ users.length }}
-                </template>
+                  <v-card>
+                    <template v-slot:title>
+                      {{ users.length }}
+                    </template>
 
-                <v-card-text>
-                  пользователей
-                </v-card-text>
-              </v-card>
+                    <v-card-text>
+                      пользователей
+                    </v-card-text>
+                  </v-card>
                 </v-col>
                 <v-col cols="4">
-                  <v-card >
-                <template v-slot:title>
-                  {{ orders.length }}
-                </template>
+                  <v-card>
+                    <template v-slot:title>
+                      {{ orders.length }}
+                    </template>
 
-                <v-card-text>
-                  Заказов
-                </v-card-text>
-              </v-card>
+                    <v-card-text>
+                      Заказов
+                    </v-card-text>
+                  </v-card>
                 </v-col>
                 <v-col cols="4">
-                  <v-card >
-                <template v-slot:title>
-                  {{ ordersTotal }}₸
-                </template>
+                  <v-card>
+                    <template v-slot:title>
+                      {{ ordersTotal }}₸
+                    </template>
 
-                <v-card-text>
-                 Общая сумма заказов
-                </v-card-text>
-              </v-card>
+                    <v-card-text>
+                      Общая сумма заказов
+                    </v-card-text>
+                  </v-card>
                 </v-col>
               </v-row>
-              
+
             </v-col>
           </v-row>
+        </v-container>
+      </v-window-item>
+      <v-window-item :value="2">
+        <v-container fluid>
+          <v-sheet>Все товары</v-sheet>
+          <ProductItem v-for="product of products" :product="product" />
         </v-container>
       </v-window-item>
     </v-window>
