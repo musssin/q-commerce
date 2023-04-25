@@ -27,6 +27,8 @@ export const useCartStore = defineStore('cart', () => {
         }
       });
     } 
+    product.balance = product.balance - 1
+    DataService.updateProduct(product)
     DataService.updateCart(cart.value)
   }
   function removeFromCart(product: Product){

@@ -49,7 +49,7 @@ export const DataService = {
     async updateProduct(product: Product) {
         const authStore = useAuthStore()
         try {
-            axios.put(`products/${product.id}`, JSON.stringify({ product}))
+            axios.put(`products/${product.id}`, JSON.stringify( product))
         } catch (err) {
             console.log(err);
         }

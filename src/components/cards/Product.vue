@@ -40,13 +40,15 @@
       </div>
 
       <div>{{ product?.description }}</div>
+      <v-sheet v-if="product?.balance < 10" class="text-red">  Осталось: {{ product?.balance }} шт.</v-sheet>
     </v-card-text>
 
     <v-divider class="mx-4 mb-1"></v-divider>
     <v-card-actions>
       
-      <v-btn v-text="'Добавить в корзину'" color="primary" class="" @click="cart.addToCart(product)"/>
+      <v-btn v-text="'Добавить в корзину'" color="primary" class="" @click="cart.addToCart(product)" :disabled="product?.balance < 1"/>
       <!-- <v-btn v-text="'Купить'" color="primary" class=""/> -->
+      
     </v-card-actions>
   </v-card>
   </template>

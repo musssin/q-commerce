@@ -12,7 +12,17 @@
                 <v-card-subtitle style="color: black;opacity: 1; ">{{ product?.price }} KZT</v-card-subtitle>
 
                 <v-card-actions>
+                  Количество на складе:
+                  <v-text-field v-model="balance" class="col-3" type="outlined"/>
                   <v-btn
+                  v-show="balance != product?.balance"
+                    class="ms-2"
+                    variant="outlined"
+                    size="small"
+                    @click="changeBalance('-')"
+                    v-text="'Подтвердить'"
+                  />
+                  <!-- <v-btn
                   :disabled="product?.balance === 0 "
                     class="ms-2"
                     variant="outlined"
@@ -20,14 +30,14 @@
                     @click="changeBalance('-')"
                     v-text="'-'"
                   />
-                  <v-card-subtitle style="color: black;opacity: 1; ">{{ product?.balance }} шт.</v-card-subtitle>
+                  <v-card-subtitle style="color: black;opacity: 1; " >{{ product?.balance }} шт.</v-card-subtitle>
                   <v-btn
                     class="ms-1"
                     variant="outlined"
                     size="small"
                     v-text="'+'"
                     @click="changeBalance('+')"
-                  />
+                  /> -->
                   <v-btn
                     class="ms-3"
                     variant="flat"
@@ -58,20 +68,18 @@ import {useCartStore} from '../../stores/cart'
 import { DataService } from '@/services/DataService';
   const { width } = useDisplay();
   const loading = ref(false);
+  
   const cart = useCartStore()
   const props = defineProps({
     product: Product
   })
-  async function changeBalance(operation: string) {
+  const balance = ref(props.product.balance)
+  async function changeBalance() {
     if (!props.product) {
       return
     }
     const p = props.product
-    if (operation === '-') {
-      p.balance = p?.balance - 1
-    } else {
-      p.balance = p?.balance + 1
-    }
+    props.product.balance = Number.parseInt(balance.value?.toString())
     DataService.updateProduct(p)
   }
   </script>
