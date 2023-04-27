@@ -20,5 +20,8 @@ class Product {
     constructor(data: Product) {
         Object.assign(this, data);
     }
+    static emptyInstance(){
+      return new Product({})
+  }
 }
 export default Product
