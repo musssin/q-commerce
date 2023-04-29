@@ -83,6 +83,7 @@ const data = computed(() => {
 })
 import ProductItem from '@/components/cards/ProductItem.vue';
 import Product from '@/entities/Product';
+import Banner from '@/components/Banner.vue';
 const products = ref(Array<Product>())
 const newProduct = ref(Product.emptyInstance())
 const showAdd = ref(false)
@@ -108,6 +109,7 @@ function addProduct() {
 
 <template>
   <v-container>
+    <Banner/>
     <!-- <v-sheet class="text-h6 font-weight-bold pt-1 ma-2">Админстрирование Q-Commerce</v-sheet>
                   <v-spacer/> -->
     <v-tabs v-model="tab" color="primary">

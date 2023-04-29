@@ -55,9 +55,10 @@
       color="primary"
       variant="flat"
     >
-      Пожалуйста, авторизуйтесь для этого!
-      <template v-slot:actions>
+      {{ snackbarText }}
+      <template v-slot:actions  v-if="snackbarText === 'Пожалуйста, авторизуйтесь для этого!'">
         <v-btn
+       
           variant="text"
           @click="auth.showDialog = true"
         >
@@ -75,13 +76,17 @@ import {useCartStore} from '../../stores/cart'
 import { useAuthStore } from '@/stores/auth';
   const { width } = useDisplay();
   const snackbar = ref(false);
+  const snackbarText = ref('')
   const cart = useCartStore()
   const auth = useAuthStore()
   function addToCart(p: Product){
     if (auth.isAuthorised) {
       cart.addToCart(p)
+      snackbar.value = true
+      snackbarText.value = 'Товар добавлен в корзину!'
     } else {
       snackbar.value = true
+      snackbarText.value = 'Пожалуйста, авторизуйтесь для этого!'
     }
     
   }

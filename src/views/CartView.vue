@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import CartItem from '@/components/cards/CartItem.vue';
+import Banner from '@/components/Banner.vue';
 import {useCartStore} from '../stores/cart'
 import { watchEffect, ref } from "vue";
 const cartStore = useCartStore()
@@ -20,6 +21,7 @@ watchEffect(() => {
 
 <template>
   <v-container>
+    <Banner/>
       <v-sheet class="text-h6 font-weight-bold pt-1 ma-2">Корзина Q-Commerce</v-sheet>
     <v-spacer/>
     <v-row>

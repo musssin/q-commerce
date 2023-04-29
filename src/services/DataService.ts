@@ -89,16 +89,21 @@ export const DataService = {
             console.log(err);
         }
     },
-    async getOrder(userId: number): Promise<Order> {
-        let order = Order.emptyInstance()
+    async getOrdersByUser(): Promise<Array<Order>> {
+        let arr: Order[] = []
+        const authStore = useAuthStore()
         try {
-            const response = await axios.get(`orders/user/${userId}`)
-            order = new Order(response.data.order)
+            const response = await axios.get(`orders/user/${authStore.user.id}`)
+            response.data.forEach((order: Order) => {
+                const o = new Order(order)
+                arr.push(o)
+            });
+            
         } catch (error) {
             console.log(error);
 
         }
-        return order
+        return arr
     },
     async getOrders(): Promise<Array<Order>> {
         let arr: Order[] = []

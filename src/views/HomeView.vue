@@ -1,7 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Banner from '@/components/Banner.vue';
+</script>
 
 <template>
   <v-col cols="12">
+    <Banner/>
     <v-col
       cols="12"
       class="block-top"

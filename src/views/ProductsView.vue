@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
+import Banner from '@/components/Banner.vue';
 import Filters from '@/components/Filters.vue';
 import type Product from '@/entities/Product';
 import { DataService } from '@/services/DataService'
@@ -38,7 +39,9 @@ const filteredProducts =  computed(()=>{
 </script>
 
 <template>
+  <Banner/>
   <v-row>
+    
     <v-col cols="3" sm="12" md="3">
       <Filters />
     </v-col>
