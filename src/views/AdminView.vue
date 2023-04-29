@@ -82,8 +82,28 @@ const data = computed(() => {
   }
 })
 import ProductItem from '@/components/cards/ProductItem.vue';
-import type Product from '@/entities/Product';
+import Product from '@/entities/Product';
 const products = ref(Array<Product>())
+const newProduct = ref(Product.emptyInstance())
+const showAdd = ref(false)
+function onDelete(id: Number) {
+  products.value = products.value.filter(p => p.id !== id)
+  DataService.deleteProduct(id.toString())
+}
+function onUpdate(product: Product) {
+  products.value.forEach(p => {
+    if(p.id === product.id) {
+       for (const key of Object.keys(p)) {
+        p[key] = product[key]
+       }
+      }
+  });
+  DataService.updateProduct(product)
+}
+function addProduct() {
+  DataService.addProduct(newProduct.value)
+  showAdd.value = false
+}
 </script>
 
 <template>
@@ -161,8 +181,35 @@ const products = ref(Array<Product>())
       </v-window-item>
       <v-window-item :value="2">
         <v-container fluid>
-          <v-sheet>Все товары</v-sheet>
-          <ProductItem v-for="product of products" :product="product" />
+          <v-row justify="space-between" class="mb-3">
+            <v-sheet class="text-h6 ml-6">Все товары</v-sheet>
+            <v-btn variant="outlined" color="primary" class="mr-6" appendIcon="mdi-pen-plus" @click="showAdd = !showAdd">Добавить товар</v-btn>
+          </v-row>
+          <v-card v-if="showAdd" variant="outlined">
+            <v-card-title class="text-h5">Добавление товара</v-card-title>
+            <v-col>
+              <v-text-field v-model="newProduct.title" placeholder="Название" label="Название" variant="filled" density="comfortable" color="primary"
+                style="max-width: 300px;width:300px;margin-left: 10px;" />
+              <v-text-field v-model="newProduct.description" placeholder="Описание" label="Описание" variant="filled" density="comfortable" color="primary"
+                style="max-width: 300px;width:300px;margin-left: 10px;" />
+              <v-text-field v-model="newProduct.brand" placeholder="Бренд" label="Бренд" variant="filled" density="comfortable" color="primary"
+                style="max-width: 300px;width:300px;margin-left: 10px;" />
+            </v-col>
+            <v-col>
+              <v-text-field v-model="newProduct.category" placeholder="Категория" label="Категория" variant="filled" density="comfortable" color="primary"
+                style="max-width: 300px;width:300px;margin-left: 10px;" />
+              <v-text-field v-model="newProduct.price" placeholder="Цена в KZT" label="Цена" variant="filled" density="comfortable" color="primary"
+                style="max-width: 300px;width:300px;margin-left: 10px;" />
+                <v-btn class="ms-2" variant="outlined" size="small" color="primary"
+              :append-icon=" 'mdi-upload-multiple'"
+              @click="addProduct">Добавить</v-btn>
+                <v-btn class="ms-2" variant="outlined" size="small" color="black"
+              @click="showAdd = !showAdd">Отмена</v-btn>
+            </v-col>
+
+          </v-card>
+          
+          <ProductItem v-for="product of products" :key="product.id + 'prod'" :product="product" @deleteProduct="onDelete" @updateProduct="onUpdate"/>
         </v-container>
       </v-window-item>
     </v-window>

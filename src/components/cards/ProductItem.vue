@@ -23,10 +23,23 @@
             <v-btn class="ms-2" variant="outlined" size="small" v-text="'Удалить'" style="color: rgb(200, 10, 10)"
               @click="deleteProduct" />
           </v-card-actions>
-          <v-card-actions v-show="showEdit">
-            <v-text-field v-for="key of Object.keys(newProduct)"
-            v-model="newProduct[key]" variant="outlined" density="compact" color="primary"
-              style="max-width: 100px;margin-left: 10px;" />
+          <v-card-actions v-if="showEdit">
+            <v-col>
+              <v-text-field v-model="newProduct.title" placeholder="Название" label="Название" variant="filled" density="comfortable" color="primary"
+                style="max-width: 300px;width:300px;margin-left: 10px;" />
+              <v-text-field v-model="newProduct.description" placeholder="Описание" label="Описание" variant="filled" density="comfortable" color="primary"
+                style="max-width: 300px;width:300px;margin-left: 10px;" />
+              <v-text-field v-model="newProduct.brand" placeholder="Бренд" label="Бренд" variant="filled" density="comfortable" color="primary"
+                style="max-width: 300px;width:300px;margin-left: 10px;" />
+              <v-text-field v-model="newProduct.category" placeholder="Категория" label="Категория" variant="filled" density="comfortable" color="primary"
+                style="max-width: 300px;width:300px;margin-left: 10px;" />
+              <v-text-field v-model="newProduct.price" placeholder="Цена в KZT" label="Цена" variant="filled" density="comfortable" color="primary"
+                style="max-width: 300px;width:300px;margin-left: 10px;" />
+                <v-btn class="ms-2" variant="outlined" size="small" color="primary"
+              :append-icon=" 'mdi-upload-multiple'"
+              @click="updateProduct">Сохранить</v-btn>
+            </v-col>
+
           </v-card-actions>
         </div>
 
@@ -51,6 +64,10 @@ const cart = useCartStore()
 const props = defineProps({
   product: Product
 })
+const emits = defineEmits<{
+  (event:'deleteProduct', id: Number): void,
+  (event:'updateProduct', product: Product): void
+}>()
 const newProduct = ref(Product.emptyInstance())
 onMounted(() => {
   newProduct.value = JSON.parse(JSON.stringify(props.product))
@@ -60,7 +77,11 @@ async function updateProduct() {
   if (!newProduct) {
     return
   }
-  DataService.updateProduct(newProduct.value)
+  emits('updateProduct', newProduct.value)
+  if (showEdit.value) showEdit.value = false
+}
+async function deleteProduct() {
+  emits('deleteProduct', props.product?.id)
 }
 </script>
   
