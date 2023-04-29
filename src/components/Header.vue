@@ -22,6 +22,7 @@
         v-if="width > 800"
       >
         <VBtn
+        v-if="auth.isAuthorised"
           :flat="true"
           prepend-icon="mdi-cart"
           class="me-auto"

@@ -9,6 +9,7 @@ export const useAuthStore = defineStore('auth', () => {
   let user = useStorage('user',{});
   const cartStore = useCartStore()
   const isAuthorised = useStorage('isAuthorised',ref(false));
+  const errorText = ref('')
   async function getCurrentUser(): Promise<Object> {
     return {};
   }
@@ -25,6 +26,9 @@ export const useAuthStore = defineStore('auth', () => {
           showDialog.value = false
           cartStore.getCart(user.value?.id)
         })
+        .catch(error => {
+          errorText.value = error?.response?.data?.message
+        })
   }
   function logout(){
     user.value = {}
@@ -37,7 +41,6 @@ export const useAuthStore = defineStore('auth', () => {
         email,
         password
       }
-      alert(12)
       axios.post('/user/add', payload)
         .then((response) => {
           user.value  = response.data
@@ -45,13 +48,14 @@ export const useAuthStore = defineStore('auth', () => {
           showDialog.value = false
           cartStore.getCart(user.value?.id)
         })
-        .catch(err =>{
-          console.log(err);
+        .catch(error =>{
+          console.log(error);
+          errorText.value = error?.response?.data?.message
         })
   }
   function toggleDialog(){
     showDialog.value = !showDialog.value
   }
 
-  return { user, login, register, showDialog, toggleDialog, isAuthorised, logout };
+  return { user, login, register, showDialog, toggleDialog, isAuthorised, logout, errorText };
 });

@@ -46,10 +46,25 @@
     <v-divider class="mx-4 mb-1"></v-divider>
     <v-card-actions>
       
-      <v-btn v-text="'Добавить в корзину'" color="primary" class="" @click="cart.addToCart(product)" :disabled="product?.balance < 1"/>
+      <v-btn v-text="'Добавить в корзину'" color="primary" class="" @click="addToCart(product)" :disabled="product?.balance < 1"/>
       <!-- <v-btn v-text="'Купить'" color="primary" class=""/> -->
       
     </v-card-actions>
+    <v-snackbar
+      v-model="snackbar"
+      color="primary"
+      variant="flat"
+    >
+      Пожалуйста, авторизуйтесь для этого!
+      <template v-slot:actions>
+        <v-btn
+          variant="text"
+          @click="auth.showDialog = true"
+        >
+          Войти
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-card>
   </template>
   <script setup lang="ts">
@@ -57,9 +72,19 @@
   import {ref} from 'vue';
 import Product from '../../entities/Product';
 import {useCartStore} from '../../stores/cart'
+import { useAuthStore } from '@/stores/auth';
   const { width } = useDisplay();
-  const loading = ref(false);
+  const snackbar = ref(false);
   const cart = useCartStore()
+  const auth = useAuthStore()
+  function addToCart(p: Product){
+    if (auth.isAuthorised) {
+      cart.addToCart(p)
+    } else {
+      snackbar.value = true
+    }
+    
+  }
   defineProps({
     product: Product
   })

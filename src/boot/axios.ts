@@ -14,7 +14,8 @@ axios.interceptors.response.use(function (response) {
     // Do something with response data
     return response;
   }, function (error) {
-    alert(error)
+    console.log('Error', error);
+    
     return Promise.reject(error);
   });
 export { VueAxios, axios };

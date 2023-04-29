@@ -20,6 +20,7 @@
         type="password"
         v-model="password"
       ></v-text-field>
+      <v-sheet  class="text-red ma-5">{{ auth.errorText === 'Invalid credentials' ? 'Неправильный логин или пароль': auth.errorText }}</v-sheet>
       <v-card-actions class="col">
         <v-col>
           <v-btn
