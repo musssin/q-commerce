@@ -6,6 +6,7 @@ class User {
     firstName!: String;
     lastName!: String;
     Name!: String;
+    role!: String;
     constructor(data: User) {
         Object.assign(this, data);
     }
