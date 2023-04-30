@@ -3,7 +3,6 @@
     class="mx-1 my-3 "
     max-width="300"
   >
-
     <v-img
       cover
       height="250"
