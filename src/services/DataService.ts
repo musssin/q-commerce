@@ -124,7 +124,7 @@ export const DataService = {
     async createOrder(cart: Cart) {
         const authStore = useAuthStore()
         try {
-            axios.post(`orders/add`, JSON.stringify({ products: cart.products, userId: authStore.user?.id }))
+            axios.post(`orders/add`, JSON.stringify({ products: cart.products, userId: authStore.user?.id, userEmail: authStore.user.email }))
         } catch (err) {
             console.log(err);
 

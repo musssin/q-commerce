@@ -3,12 +3,20 @@ import Banner from '@/components/Banner.vue';
 import OrderItem from '@/components/cards/OrderItem.vue';
 import type Order from '@/entities/Order';
 import { DataService } from '@/services/DataService';
+import { useAuthStore } from '@/stores/auth';
 import { ref, onMounted } from "vue";
 const orders = ref(Array<Order>())
 const loading = ref(true)
+const auth = useAuthStore()
 onMounted(()=>{
-  DataService.getOrdersByUser()
+  if (auth.user.role === 'admin') {
+    DataService.getOrders()
   .then(result => {orders.value = result; loading.value = false})
+  } else {
+    DataService.getOrdersByUser()
+  .then(result => {orders.value = result; loading.value = false})
+  }
+  
 })
 </script>
 

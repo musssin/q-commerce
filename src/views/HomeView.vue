@@ -110,7 +110,7 @@ import Banner from '@/components/Banner.vue';
       </div>
     </div>
     <div class="footer_overlay"></div>
-    <footer class="footer" style="z-index: -99;">
+    <footer class="footer" >
 <div class="footer_background" style="background-image:url(images/footer.jpg)"></div>
 <div class="container">
 <div class="row">
@@ -118,15 +118,19 @@ import Banner from '@/components/Banner.vue';
 <div class="footer_content d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
 <div class="footer_logo"><a href="#">Q - commerce</a></div>
 <div class="copyright ml-auto mr-auto">
-Copyright ©2023 Все права защищены<i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank"></a>
+Copyright ©2023 Все права защищены<i class="fa fa-heart-o" aria-hidden="true"></i> by 
+<br/> <a href="tel:77076065918" target="_blank">Aizada Amanova</a><br/><a href="tel:77076065918" >+7 (707) 606 5918</a>
 </div>
-<div class="footer_social ml-lg-auto">
+<div class="footer_social ml-lg-auto mb-2">
+  Контакты:
 <ul>
-<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+<li></li>
+<li><a href=""></a></li>
+<li><a href="https://wa.me/77076065918"><img src="https://www.svgrepo.com/show/110197/whatsapp.svg" width="30" height="30"/></a></li>
+<li><a href="mailto:011119650651@stud.satbayev.university"><img src="https://www.freepnglogos.com/uploads/logo-gmail-png/logo-gmail-png-file-gmail-icon-svg-wikimedia-commons-0.png" width="35" height="35"/></a></li>
+
 </ul>
+
 </div>
 </div>
 </div>
@@ -135,7 +139,9 @@ Copyright ©2023 Все права защищены<i class="fa fa-heart-o" aria
 </footer>
   </v-col>
 </template>
-<style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900');
+
 .block-top {
   background-image: url('../src/assets/blue_blur.jpg');
   background-size: cover;

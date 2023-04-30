@@ -2,6 +2,7 @@
 class Order {
     id!: Number;
     userId!: Number;
+    userEmail!: String;
     total!: number ;
     totalProducts!: Number;
     totalQuantity!: Number;
