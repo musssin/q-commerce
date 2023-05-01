@@ -39,8 +39,8 @@ export const useCartStore = defineStore('cart', () => {
     cart.value.products = []
     DataService.updateCart(cart.value)
   }
-  async function createOrder(){
-    await DataService.createOrder(cart.value)
+  async function createOrder(address){
+    await DataService.createOrder(cart.value, address)
     removeAllFromCart()
   }
   function setProduct(product: Product){

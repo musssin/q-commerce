@@ -10,13 +10,17 @@
                   Заказ номера: {{ order?.id }}
                 </v-card-title>
                 <v-row justify="space-between" class="ml-2 mt-2">
-                  <v-card-subtitle style="color: whitesmoke;opacity: 1; ">На сумму: {{ order?.total }} KZT</v-card-subtitle>
+                  
                 <v-card-subtitle style="color: whitesmoke;opacity: 1; " class="text-h6" v-if="auth.user.role === 'admin'">Почта заказчика: {{ order?.userEmail }} </v-card-subtitle>
+                <v-card-subtitle style="color: whitesmoke;opacity: 1; " class="text-h6" v-if="auth.user.role === 'admin'">Адрес доставки: {{ order?.userAddress }} </v-card-subtitle>
 
                 </v-row>
                 
                 <v-card-actions>
-                  <v-card-subtitle style="color: whitesmoke;opacity: 1; ">Количество товаров: {{ order?.totalQuantity }} шт.</v-card-subtitle><br/>
+                  <v-row class="ml-1 mt-2">
+                    <v-card-subtitle style="color: whitesmoke;opacity: 1; ">На сумму: {{ order?.total }} KZT</v-card-subtitle>
+                    <v-card-subtitle style="color: whitesmoke;opacity: 1; ">Количество товаров: {{ order?.totalQuantity }} шт.</v-card-subtitle>
+                  </v-row>
                   
                 </v-card-actions>
                 <v-card-actions>
@@ -31,7 +35,7 @@
                 rounded="0"
               >
              
-                <v-img :src="order?.products[0].thumbnail" ></v-img>
+                <v-img :src="order?.products[0]?.thumbnail" ></v-img>
               </v-avatar>
             </div>
           </v-card>
