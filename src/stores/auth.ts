@@ -9,9 +9,6 @@ export const useAuthStore = defineStore('auth', () => {
   const cartStore = useCartStore();
   const isAuthorised = useStorage('isAuthorised', ref(false));
   const errorText = ref('');
-  async function getCurrentUser(): Promise<Object> {
-    return {};
-  }
 
   async function login(username: string, password: string) {
     const body = {

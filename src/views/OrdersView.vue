@@ -1,3 +1,22 @@
+<template>
+  <v-container>
+    <Banner />
+    <v-sheet class="text-h6 font-weight-bold pt-1 ma-2">Мои заказы</v-sheet>
+    <v-spacer />
+    <v-row>
+      <v-col
+        cols="12"
+        v-if="!loading"
+      >
+        <OrderItem
+          v-for="(order, oIndex) of orders"
+          :key="'order_item' + oIndex"
+          :order="order"
+        />
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
 <script setup lang="ts">
 import Banner from '@/components/Banner.vue';
 import OrderItem from '@/components/cards/OrderItem.vue';
@@ -23,23 +42,5 @@ onMounted(() => {
 });
 </script>
 
-<template>
-  <v-container>
-    <Banner />
-    <v-sheet class="text-h6 font-weight-bold pt-1 ma-2">Мои заказы</v-sheet>
-    <v-spacer />
-    <v-row>
-      <v-col
-        cols="12"
-        v-if="!loading"
-      >
-        <OrderItem
-          v-for="(order, oIndex) of orders"
-          :key="'order_item' + oIndex"
-          :order="order"
-        />
-      </v-col>
-    </v-row>
-  </v-container>
-</template>
+
 <style></style>

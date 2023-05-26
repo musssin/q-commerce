@@ -1,3 +1,37 @@
+<template>
+  <v-container class="d-flex flex-wrap">
+    <Banner class="flex-1-1-50" />
+    <Filters />
+    <v-col
+      cols="9"
+      sm="12"
+      md="9"
+    >
+      <v-row
+        v-if="loading"
+        class="justify-center mt-16"
+      >
+        <v-progress-circular
+          class="col-6"
+          :size="50"
+          color="primary"
+          indeterminate
+        ></v-progress-circular>
+      </v-row>
+      <v-row
+        v-else
+        class="mt-3"
+      >
+        <ProductVue
+          v-for="(product, pKey) of filteredProducts"
+          :product="product"
+          :key="'product' + pKey"
+          class="col-3"
+        />
+      </v-row>
+    </v-col>
+  </v-container>
+</template>
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
 import Banner from '@/components/Banner.vue';
@@ -32,44 +66,3 @@ const filteredProducts = computed(() => {
   return filteredProducts;
 });
 </script>
-
-<template>
-  <Banner />
-  <v-row>
-    <v-col
-      cols="3"
-      sm="12"
-      md="3"
-    >
-      <Filters />
-    </v-col>
-    <v-col
-      cols="9"
-      sm="12"
-      md="9"
-    >
-      <v-row
-        v-if="loading"
-        class="justify-center mt-16"
-      >
-        <v-progress-circular
-          class="col-6"
-          :size="50"
-          color="primary"
-          indeterminate
-        ></v-progress-circular>
-      </v-row>
-      <v-row
-        v-else
-        class="mt-3"
-      >
-        <ProductVue
-          v-for="(product, pKey) of filteredProducts"
-          :product="product"
-          :key="'product' + pKey"
-          class="col-3"
-        />
-      </v-row>
-    </v-col>
-  </v-row>
-</template>

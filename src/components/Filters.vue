@@ -1,7 +1,6 @@
 <template>
-  <v-container class="">
+  <v-container class="d-flex">
     <v-col>
-      <!-- <v-sheet class="text-h6">Категории</v-sheet> -->
       <v-expansion-panels
         v-model="panel"
         multiple

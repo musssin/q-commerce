@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import Banner from '@/components/Banner.vue';
-</script>
+
 
 <template>
   <v-col cols="12">
@@ -233,6 +231,9 @@ import Banner from '@/components/Banner.vue';
     </footer>
   </v-col>
 </template>
+<script setup lang="ts">
+import Banner from '@/components/Banner.vue';
+</script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900');
 

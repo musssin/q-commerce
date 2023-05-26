@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mt-3 mb-3">
+  <v-card class="">
     <v-img
       :src="card.src"
       class="align-end"
