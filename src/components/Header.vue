@@ -22,6 +22,7 @@
         v-if="width > 800"
       >
         <VBtn
+          v-if="auth.isAuthorised"
           :flat="true"
           prepend-icon="mdi-cart"
           class="me-auto"
@@ -34,28 +35,28 @@
         class="align-end pl-2"
         v-if="width > 800"
       >
-      <v-btn
-      v-if="!auth.isAuthorised"
-      prepend-icon="mdi-account"
-      flat
-      @click="auth.toggleDialog()"
-    >Воити</v-btn>
-    
-      <v-btn
-      v-else
-      append-icon="mdi-arrow-down"
-      
-      flat
-    >{{ auth.user?.username }}
+        <v-btn
+          v-if="!auth.isAuthorised"
+          prepend-icon="mdi-account"
+          flat
+          @click="auth.toggleDialog()"
+          >Воити</v-btn
+        >
 
-      <v-menu activator="parent">
-        <v-list>
-          <v-list-item @click="auth.logout()">
-            <v-list-item-title>Выйти</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-    </v-btn>
+        <v-btn
+          v-else
+          append-icon="mdi-arrow-down"
+          flat
+          >{{ auth.user?.username }}
+
+          <v-menu activator="parent">
+            <v-list>
+              <v-list-item @click="auth.logout()">
+                <v-list-item-title>Выйти</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </v-btn>
       </v-col>
       <v-col
         cols="2"
@@ -71,7 +72,7 @@
     </v-row>
   </v-container>
   <AuthModal />
-  <PaymentModal/>
+  <PaymentModal />
 </template>
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/auth';
@@ -82,5 +83,5 @@ import Navigation from './Navigation.vue';
 import router from '@/router';
 import PaymentModal from './modals/PaymentModal.vue';
 const { width } = useDisplay();
-const auth = useAuthStore()
+const auth = useAuthStore();
 </script>

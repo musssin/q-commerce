@@ -7,14 +7,25 @@
       <VBtn
         :flat="true"
         align-self="end"
+        :active="$route.name === i.route"
         @click="router.push({ name: i.route })"
         >{{ i.label }}</VBtn
+      >
+    </v-col>
+    <v-col v-if="auth.user.role === 'admin'">
+      <VBtn
+        :flat="true"
+        align-self="end"
+        :active="$route.name === 'admin'"
+        @click="router.push({ name: 'admin' })"
+        >{{ 'Админ' }}</VBtn
       >
     </v-col>
   </v-row>
 </template>
 <script setup lang="ts">
 import router from '@/router';
+import { useAuthStore } from '@/stores/auth';
 const items = [
   {
     label: 'Главная',
@@ -25,8 +36,9 @@ const items = [
     route: 'products',
   },
   {
-    label: 'О проекте',
-    route: '',
-  }
+    label: 'Мои заказы',
+    route: 'orders',
+  },
 ];
+const auth = useAuthStore();
 </script>

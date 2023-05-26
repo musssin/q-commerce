@@ -20,6 +20,11 @@
         type="password"
         v-model="password"
       ></v-text-field>
+      <v-sheet class="text-red ma-5">{{
+        auth.errorText === 'Invalid credentials'
+          ? 'Неправильный логин или пароль'
+          : auth.errorText
+      }}</v-sheet>
       <v-card-actions class="col">
         <v-col>
           <v-btn
@@ -66,7 +71,6 @@
             color="white"
             class="bg-primary ma-1"
             block
-            
             @click="submit"
             >Регистрация</v-btn
           >
@@ -94,7 +98,7 @@ const email = ref('');
 const password = ref('');
 const username = ref('');
 
-async function submit(){
+async function submit() {
   if (mode.value === 'login') {
     auth.login(username.value, password.value);
   } else {

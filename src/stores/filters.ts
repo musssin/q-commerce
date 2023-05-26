@@ -6,39 +6,50 @@ export const useFilterStore = defineStore('category', () => {
   const brands = ref();
   const selectedCategories = ref(Array<String>());
   const selectedBrands = ref(Array<String>());
-  const startPrice = ref(0)
-  const endPrice = ref(10000000)
+  const startPrice = ref(0);
+  const endPrice = ref(10000000);
   async function getCategories() {
     if (!categories.value) {
-      await fetchCategories()
+      await fetchCategories();
     }
-   return categories.value
+    return categories.value;
   }
   async function getBrands() {
-    if (!brands.value){
-      await fetchBrands()
+    if (!brands.value) {
+      await fetchBrands();
     }
-    return brands.value
+    return brands.value;
   }
   async function fetchCategories() {
     categories.value = await DataService.getCategories();
   }
   async function fetchBrands() {
-    brands.value = await  DataService.getBrands();
+    brands.value = await DataService.getBrands();
   }
-  function selectCategory(category: String){
-    if (selectedCategories.value.find(c => c===category)) {
-      selectedCategories.value = selectedCategories.value.filter(c => c !== category)
+  function selectCategory(category: String) {
+    if (selectedCategories.value.find((c) => c === category)) {
+      selectedCategories.value = selectedCategories.value.filter(
+        (c) => c !== category
+      );
     } else {
       selectedCategories.value.push(category);
     }
   }
-  function selectBrand(brand: String){
-    if (selectedBrands.value.find(c => c===brand)) {
-      selectedBrands.value = selectedBrands.value.filter(c => c !== brand)
+  function selectBrand(brand: String) {
+    if (selectedBrands.value.find((c) => c === brand)) {
+      selectedBrands.value = selectedBrands.value.filter((c) => c !== brand);
     } else {
       selectedBrands.value.push(brand);
     }
   }
-  return { selectedCategories, selectedBrands, getCategories, getBrands, selectCategory, selectBrand, startPrice, endPrice };
+  return {
+    selectedCategories,
+    selectedBrands,
+    getCategories,
+    getBrands,
+    selectCategory,
+    selectBrand,
+    startPrice,
+    endPrice,
+  };
 });
