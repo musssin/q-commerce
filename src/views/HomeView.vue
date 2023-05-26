@@ -1,5 +1,3 @@
-
-
 <template>
   <v-col cols="12">
     <Banner />

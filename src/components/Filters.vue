@@ -1,5 +1,8 @@
 <template>
-  <v-container class="d-flex">
+  <v-card
+    class=""
+    :border="false"
+  >
     <v-col>
       <v-expansion-panels
         v-model="panel"
@@ -74,7 +77,7 @@
         </v-expansion-panel>
       </v-expansion-panels>
     </v-col>
-  </v-container>
+  </v-card>
 </template>
 <script setup lang="ts">
 import { useDisplay } from 'vuetify';
