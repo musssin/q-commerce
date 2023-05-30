@@ -1,23 +1,4 @@
-<script setup lang="ts">
-import CartItem from '@/components/cards/CartItem.vue';
-import Banner from '@/components/Banner.vue';
-import { useCartStore } from '../stores/cart';
-import { watchEffect, ref } from 'vue';
-const cartStore = useCartStore();
-const total = ref(0);
-const count = ref(0);
-const quantity = ref(0);
-watchEffect(() => {
-  total.value = 0;
-  count.value = 0;
-  quantity.value = 0;
-  cartStore.cart.products.forEach((p) => {
-    count.value++;
-    quantity.value += p.quantity;
-    total.value += p.price * p.quantity;
-  });
-});
-</script>
+
 
 <template>
   <v-container>
@@ -75,4 +56,24 @@ watchEffect(() => {
     </v-row>
   </v-container>
 </template>
+<script setup lang="ts">
+import CartItem from '@/components/cards/CartItem.vue';
+import Banner from '@/components/BannerTop.vue';
+import { useCartStore } from '../stores/cart';
+import { watchEffect, ref } from 'vue';
+const cartStore = useCartStore();
+const total = ref(0);
+const count = ref(0);
+const quantity = ref(0);
+watchEffect(() => {
+  total.value = 0;
+  count.value = 0;
+  quantity.value = 0;
+  cartStore.cart.products.forEach((p) => {
+    count.value++;
+    quantity.value += p.quantity;
+    total.value += p.price * p.quantity;
+  });
+});
+</script>
 <style></style>

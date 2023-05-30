@@ -1,6 +1,14 @@
 <template>
-  <v-row>
-    <Filters />
+  <v-row
+    class="ma-0 mt-6"
+    no-gutters
+  >
+    <v-col cols="3">
+      <Filters
+        cols="3"
+        v-if="width > 800"
+    /></v-col>
+
     <v-progress-circular
       v-if="loading"
       class="col-6"
@@ -8,17 +16,19 @@
       color="primary"
       indeterminate
     />
-    <v-row
+    <v-col
       v-else
-      class="mt-3"
+      cols="9"
     >
-      <ProductVue
-        v-for="(product, pKey) of filteredProducts"
-        :product="product"
-        :key="'product' + pKey"
-        class="col-3"
-      />
-    </v-row>
+      <v-row class="d-flex flex-wrap">
+        <ProductVue
+          v-for="(product, pKey) of filteredProducts"
+          :product="product"
+          :key="'product' + pKey"
+
+        />
+      </v-row>
+    </v-col>
   </v-row>
 </template>
 <script setup lang="ts">
@@ -28,6 +38,8 @@ import type Product from '@/entities/Product';
 import { DataService } from '@/services/DataService';
 import { useFilterStore } from '@/stores/filters';
 import { ref, onMounted, computed } from 'vue';
+import { useDisplay } from 'vuetify';
+const { width } = useDisplay();
 const filterStore = useFilterStore();
 const products = ref(new Array<Product>());
 const loading = ref(false);

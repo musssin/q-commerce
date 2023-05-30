@@ -230,7 +230,7 @@
   </v-col>
 </template>
 <script setup lang="ts">
-import Banner from '@/components/Banner.vue';
+import Banner from '@/components/BannerTop.vue';
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900');

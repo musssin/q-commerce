@@ -18,7 +18,7 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import Banner from '@/components/Banner.vue';
+import Banner from '@/components/BannerTop.vue';
 import OrderItem from '@/components/cards/OrderItem.vue';
 import type Order from '@/entities/Order';
 import { DataService } from '@/services/DataService';

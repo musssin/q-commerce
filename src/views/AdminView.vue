@@ -208,7 +208,7 @@ import type Order from '@/entities/Order';
 import type User from '@/entities/User';
 import ProductItem from '@/components/cards/ProductItem.vue';
 import Product from '@/entities/Product';
-import Banner from '@/components/Banner.vue';
+import Banner from '@/components/BannerTop.vue';
 ChartJS.register(
   CategoryScale,
   LinearScale,

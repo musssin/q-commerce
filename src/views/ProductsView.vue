@@ -5,6 +5,6 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import Banner from '@/components/Banner.vue';
+import Banner from '@/components/BannerTop.vue';
 import ProductsList from '@/modules/ProductsList.vue';
 </script>
