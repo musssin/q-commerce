@@ -1,7 +1,5 @@
 <template>
-  <v-card
-    :border="false"
-  >
+  <v-card :border="false">
     <v-expansion-panels
       v-model="panel"
       multiple

@@ -1,9 +1,11 @@
 <template>
-  <v-row
-    class="ma-0 mt-6"
-    no-gutters
-  >
-    <v-col cols="3">
+  <v-row class="ma-0">
+    <v-col
+      cols="3"
+      sm="12"
+      md="3"
+      class="d-flex flex-wrap"
+    >
       <Filters
         cols="3"
         v-if="width > 800"
@@ -19,14 +21,15 @@
     <v-col
       v-else
       cols="9"
+      style="height: 120vh; overflow-y: scroll; overflow-x: hidden"
     >
-      <v-row class="d-flex flex-wrap">
-        <ProductVue
+      <v-row>
+        <v-col
           v-for="(product, pKey) of filteredProducts"
-          :product="product"
           :key="'product' + pKey"
-
-        />
+        >
+          <ProductVue :product="product" />
+        </v-col>
       </v-row>
     </v-col>
   </v-row>

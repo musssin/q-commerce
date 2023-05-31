@@ -1,5 +1,5 @@
 <template>
-  <v-card class="w-100">
+  <v-card class="w-100 mb-2">
     <v-img
       :src="card.src"
       class="align-end"

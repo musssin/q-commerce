@@ -2,7 +2,7 @@ import type { Guid } from 'guid-ts';
 class Product {
   id!: Number;
   title!: string;
-  price!: Number;
+  price!: number;
   description!: string;
   brand!: string;
   category!: string;

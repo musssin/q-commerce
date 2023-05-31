@@ -1,8 +1,5 @@
 <template>
-  <v-card
-    class="mx-3 pa-0"
-    max-width="280"
-  >
+  <v-card class="pa-0 mt-0">
     <v-img
       cover
       height="250"
