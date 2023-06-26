@@ -1,5 +1,6 @@
 {
-    "singleAttributePerLine": true,
-    "singleQuote": true,
-    "endOfLine":"auto"
+  "singleAttributePerLine": true,
+  "singleQuote": true,
+  "bracketSameLine": false,
+  "endOfLine": "auto"
 }

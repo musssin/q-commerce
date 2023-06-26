@@ -196,8 +196,8 @@
                 <a
                   href="tel:77076065918"
                   target="_blank"
-                  >Aizada Amanova</a
-                ><br /><a href="tel:77076065918">+7 (707) 606 5918</a>
+                  >Mussin Yernat</a
+                ><br /><a href="tel:77076065918">+7 (747) 577 1920</a>
               </div>
               <div class="footer_social ml-lg-auto mb-2">
                 Контакты:

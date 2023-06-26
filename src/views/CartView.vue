@@ -1,5 +1,3 @@
-
-
 <template>
   <v-container>
     <Banner />
@@ -10,8 +8,9 @@
     <v-row>
       <v-col cols="8">
         <CartItem
-          :product="p"
           v-for="p of cartStore.cart.products"
+          :key="'products' + p"
+          :product="p"
         />
       </v-col>
       <v-col cols="4">

@@ -1,12 +1,13 @@
 <template>
   <v-row class="ma-0">
     <v-col
+      v-if="width > 800"
       cols="3"
       sm="12"
       md="3"
       class="d-flex flex-wrap"
     >
-      <Filters
+      <ProductsFilters
         cols="3"
         v-if="width > 800"
     /></v-col>
@@ -20,7 +21,10 @@
     />
     <v-col
       v-else
-      cols="9"
+      sm="12"
+      xs="12"
+      md="9"
+      data-id="123"
       style="height: 120vh; overflow-y: scroll; overflow-x: hidden"
     >
       <v-row>
@@ -35,7 +39,7 @@
   </v-row>
 </template>
 <script setup lang="ts">
-import Filters from '@/components/Filters.vue';
+import ProductsFilters from '@/components/ProductsFilters.vue';
 import ProductVue from '@/components/cards/Product.vue';
 import type Product from '@/entities/Product';
 import { DataService } from '@/services/DataService';

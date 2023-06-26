@@ -4,22 +4,14 @@
       v-for="(i, index) of items"
       :key="index"
     >
-      <VBtn
+      <v-btn
         :flat="true"
         align-self="end"
         :active="$route.name === i.route"
         @click="router.push({ name: i.route })"
-        >{{ i.label }}</VBtn
       >
-    </v-col>
-    <v-col v-if="auth.user.role === 'admin'">
-      <VBtn
-        :flat="true"
-        align-self="end"
-        :active="$route.name === 'admin'"
-        @click="router.push({ name: 'admin' })"
-        >{{ 'Админ' }}</VBtn
-      >
+        {{ i.label }}
+      </v-btn>
     </v-col>
   </v-row>
 </template>
@@ -36,8 +28,8 @@ const items = [
     route: 'products',
   },
   {
-    label: 'Мои заказы',
-    route: 'orders',
+    label: 'Админ',
+    route: 'admin',
   },
 ];
 const auth = useAuthStore();

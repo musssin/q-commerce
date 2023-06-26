@@ -3,9 +3,11 @@ import { defineStore } from 'pinia';
 import { useStorage } from '@vueuse/core';
 import { useCartStore } from './cart';
 import axios from 'axios';
+import User from '@/entities/User';
 export const useAuthStore = defineStore('auth', () => {
   const showDialog = ref(false);
-  const user = useStorage('user', {});
+  const userInstance = User.emptyInstance({});
+  const user = useStorage('user', userInstance);
   const cartStore = useCartStore();
   const isAuthorised = useStorage('isAuthorised', ref(false));
   const errorText = ref('');
