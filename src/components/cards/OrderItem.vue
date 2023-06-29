@@ -14,15 +14,15 @@
             class="ml-2 mt-2"
           >
             <v-card-subtitle
+              v-if="auth.user.role === 'admin'"
               style="color: whitesmoke; opacity: 1"
               class="text-h6"
-              v-if="auth.user.role === 'admin'"
               >Почта заказчика: {{ order?.userEmail }}
             </v-card-subtitle>
             <v-card-subtitle
+              v-if="auth.user.role === 'admin'"
               style="color: whitesmoke; opacity: 1"
               class="text-h6"
-              v-if="auth.user.role === 'admin'"
               >Адрес доставки: {{ order?.userAddress }}
             </v-card-subtitle>
           </v-row>

@@ -40,11 +40,11 @@
     <v-divider class="mx-4 mb-1"></v-divider>
     <v-card-actions>
       <v-btn
-        v-text="'Добавить в корзину'"
         color="primary"
         class=""
-        @click="addToCart(product)"
         :disabled="product?.balance < 1"
+        @click="addToCart(product)"
+        v-text="'Добавить в корзину'"
       />
       <!-- <v-btn v-text="'Купить'" color="primary" class=""/> -->
     </v-card-actions>
@@ -55,8 +55,8 @@
     >
       {{ snackbarText }}
       <template
-        v-slot:actions
         v-if="snackbarText === 'Пожалуйста, авторизуйтесь для этого!'"
+        #actions
       >
         <v-btn
           variant="text"

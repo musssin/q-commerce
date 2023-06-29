@@ -2,21 +2,24 @@
   <v-card :border="false">
     <v-expansion-panels
       v-model="panel"
-      multiple>
+      multiple
+    >
       <v-expansion-panel>
         <v-expansion-panel-title>Цена</v-expansion-panel-title>
         <v-expansion-panel-text>
           <v-row class="mt-2">
             <v-text-field
+              v-model="startPrice"
               label="От"
               class=""
               type="number"
-              v-model="startPrice" />
+            />
             <v-text-field
+              v-model.lazy="endPrice"
               label="До"
               class=""
               type="number"
-              v-model.lazy="endPrice" />
+            />
           </v-row>
         </v-expansion-panel-text>
       </v-expansion-panel>
@@ -26,14 +29,14 @@
           <v-list>
             <v-list-item
               v-for="category in categories"
-              :key="'1' + category">
-              <template v-slot:prepend="{ isActive }">
+              :key="'1' + category"
+            >
+              <template #prepend="{ isActive }">
                 <v-list-item-action start>
                   <v-checkbox-btn
                     :model-value="isActive"
-                    @click="
-                      filterStore.selectCategory(category)
-                    "></v-checkbox-btn>
+                    @click="filterStore.selectCategory(category)"
+                  ></v-checkbox-btn>
                 </v-list-item-action>
               </template>
 
@@ -50,12 +53,14 @@
           <v-list>
             <v-list-item
               v-for="brand in brands"
-              :key="'1' + brand">
-              <template v-slot:prepend="{ isActive }">
+              :key="'1' + brand"
+            >
+              <template #prepend="{ isActive }">
                 <v-list-item-action start>
                   <v-checkbox-btn
                     :model-value="isActive"
-                    @click="filterStore.selectBrand(brand)"></v-checkbox-btn>
+                    @click="filterStore.selectBrand(brand)"
+                  ></v-checkbox-btn>
                 </v-list-item-action>
               </template>
 

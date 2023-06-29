@@ -1,5 +1,8 @@
 <template>
-  <v-app-bar flat>
+  <v-app-bar
+    flat
+    class="mt-0"
+  >
     <v-container>
       <v-row
         no-gutters
@@ -10,7 +13,7 @@
         </v-col>
 
         <v-col cols="auto">
-          <Navigation v-if="smAndUp" />
+          <HeaderNavigation v-if="smAndUp" />
         </v-col>
         <v-col
           v-if="smAndUp"
@@ -39,10 +42,9 @@
 </template>
 <script setup lang="ts">
 import { useDisplay } from 'vuetify';
-import AuthModal from './modals/AuthModal.vue';
-import AuthButton from './buttons/AuthButton.vue';
-import Navigation from './Navigation.vue';
-import PaymentModal from './modals/PaymentModal.vue';
+import { AuthButton, AuthModal } from '@/modules/auth/';
+import HeaderNavigation from './HeaderNavigation.vue';
+import PaymentModal from '@/components/modals/PaymentModal.vue';
 import { useNavigationStore } from '@/stores/navigation';
 const { smAndUp } = useDisplay();
 const navigation = useNavigationStore();

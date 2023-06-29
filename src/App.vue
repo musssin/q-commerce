@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import MainHeader from '@/components/MainHeader.vue';
-import NavigationDrawer from '@/components/NavigationDrawer.vue';
+import { MainHeader, NavigationDrawer } from '@/modules/navigation';
 </script>
 
 <template>
   <v-layout>
     <MainHeader />
     <NavigationDrawer />
-    <!-- <RouterView /> -->
+    <RouterView />
   </v-layout>
 
   <!-- </main> -->

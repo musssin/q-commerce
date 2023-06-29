@@ -6,7 +6,7 @@ class User {
   lastName!: String;
   Name!: String;
   role!: String;
-  constructor(data: User) {
+  public constructor(data: Partial<User>) {
     Object.assign(this, data);
   }
   static emptyInstance() {

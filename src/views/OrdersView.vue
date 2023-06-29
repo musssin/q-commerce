@@ -5,8 +5,8 @@
     <v-spacer />
     <v-row>
       <v-col
-        cols="12"
         v-if="!loading"
+        cols="12"
       >
         <OrderItem
           v-for="(order, oIndex) of orders"

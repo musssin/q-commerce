@@ -29,8 +29,8 @@
               class="ms-1"
               variant="outlined"
               size="small"
-              v-text="'+'"
               @click="changeQuantity('+')"
+              v-text="'+'"
             />
             <v-btn
               class="ms-3"

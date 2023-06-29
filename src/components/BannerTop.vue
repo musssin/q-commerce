@@ -5,7 +5,8 @@
       class="align-end"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       height="200px"
-      cover>
+      cover
+    >
       <v-card-title class="text-white">{{ card.title }}</v-card-title>
     </v-img>
   </v-card>

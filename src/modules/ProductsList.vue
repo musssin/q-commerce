@@ -8,8 +8,8 @@
       class="d-flex flex-wrap"
     >
       <ProductsFilters
-        cols="3"
         v-if="width > 800"
+        cols="3"
     /></v-col>
 
     <v-progress-circular

@@ -7,34 +7,34 @@
     <v-card class="ma-3">
       <v-card-text class="text-center text-h5"> Оплата </v-card-text>
       <v-text-field
+        v-model="number"
         class="ml-6 mr-6"
         type="number"
-        v-model="number"
         label=" Номер карты"
         :rules="[rules.required]"
       ></v-text-field>
       <v-text-field
+        v-model="username"
         class="ml-6 mr-6"
         type="text"
-        v-model="username"
         label="Имя держателя"
         :rules="[rules.required]"
       ></v-text-field>
       <v-row>
         <v-col cols="6">
           <v-text-field
+            v-model="date"
             class="ml-6 mr-6"
             type="text"
-            v-model="date"
             label="Срок действия"
             :rules="[rules.required]"
           />
         </v-col>
         <v-col cols="6">
           <v-text-field
+            v-model="cvv"
             class="ml-2 mr-6"
             type="text"
-            v-model="cvv"
             label="CVV "
             :rules="[rules.required]"
           />
@@ -45,9 +45,9 @@
         class="ma-2"
       />
       <v-text-field
+        v-model="address"
         class="ml-6 mr-6"
         type="text"
-        v-model="address"
         label="Адрес доставки"
         :rules="[rules.required]"
       ></v-text-field>
@@ -71,7 +71,7 @@
   >
     {{ snackBarText }}
 
-    <template v-slot:actions>
+    <template #actions>
       <v-btn
         color="primary"
         variant="text"

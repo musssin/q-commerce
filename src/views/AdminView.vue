@@ -13,8 +13,8 @@
     <v-window v-model="tab">
       <v-window-item :value="1">
         <v-container
-          fluid
           v-if="!loading"
+          fluid
         >
           <v-row>
             <v-col
@@ -37,8 +37,8 @@
                   class="mx-2"
                   flat
                   :active="y === selectedYear"
-                  @click="selectedYear = y"
                   variant="outlined"
+                  @click="selectedYear = y"
                 >
                   <span class="hidden-sm-and-down">{{ y }}</span>
 
@@ -61,7 +61,7 @@
               <v-row>
                 <v-col cols="4">
                   <v-card>
-                    <template v-slot:title>
+                    <template #title>
                       {{ users.length }}
                     </template>
 
@@ -70,7 +70,7 @@
                 </v-col>
                 <v-col cols="4">
                   <v-card>
-                    <template v-slot:title>
+                    <template #title>
                       {{ orders.length }}
                     </template>
 
@@ -79,7 +79,7 @@
                 </v-col>
                 <v-col cols="4">
                   <v-card>
-                    <template v-slot:title> {{ ordersTotal }}₸ </template>
+                    <template #title> {{ ordersTotal }}₸ </template>
 
                     <v-card-text> Общая сумма заказов </v-card-text>
                   </v-card>
@@ -100,7 +100,7 @@
               variant="outlined"
               color="primary"
               class="mr-6"
-              appendIcon="mdi-pen-plus"
+              append-icon="mdi-pen-plus"
               @click="showAdd = !showAdd"
               >Добавить товар</v-btn
             >

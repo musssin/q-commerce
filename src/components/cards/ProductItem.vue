@@ -50,9 +50,9 @@
               class="ms-2"
               variant="outlined"
               size="small"
-              v-text="'Удалить'"
               style="color: rgb(200, 10, 10)"
               @click="deleteProduct"
+              v-text="'Удалить'"
             />
           </v-card-actions>
           <v-card-actions v-if="showEdit">
