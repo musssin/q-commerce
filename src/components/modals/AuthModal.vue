@@ -88,7 +88,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useAuthStore } from '@/stores/auth';
+import { useAuthStore } from '@/modules/auth';
 const auth = useAuthStore();
 const mode = ref('login');
 async function setMode(m: string) {

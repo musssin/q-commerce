@@ -1,20 +1,20 @@
 <template>
   <v-btn
-    v-if="!auth.isAuthorised"
+    v-if="!isAuthorised"
     prepend-icon="mdi-account"
     flat
-    @click="auth.toggleDialog()"
+    @click="toggleDialog()"
     >Воити
   </v-btn>
   <v-btn
     v-else
     append-icon="mdi-arrow-down"
     flat
-    >{{ auth.user?.username }}
+    >{{ user.username }}
 
     <v-menu activator="parent">
       <v-list>
-        <v-list-item @click="auth.logout()">
+        <v-list-item @click="logout">
           <v-list-item-title>Выйти</v-list-item-title>
         </v-list-item>
       </v-list>
@@ -22,6 +22,6 @@
   </v-btn>
 </template>
 <script setup lang="ts">
-import { useAuthStore } from '@/stores/auth';
-const auth = useAuthStore();
+import { useAuthStore } from '@/modules/auth';
+const { isAuthorised, user, logout, toggleDialog } = useAuthStore();
 </script>

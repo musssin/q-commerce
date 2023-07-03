@@ -33,7 +33,7 @@
           :prepend-icon="'mdi-login'"
           color="primary"
           outlined
-          @click="login"
+          @click="toggleDialog"
           >Воити</v-btn
         >
       </v-list-item>
@@ -43,9 +43,9 @@
 <script setup lang="ts">
 import { useNavigationStore } from '@/stores/navigation';
 import { useDisplay } from 'vuetify';
-import { useAuthStore } from '@/stores/auth';
+import { useAuthStore } from '@/modules/auth';
 import HeaderNavigation from './HeaderNavigation.vue';
 const navigation = useNavigationStore();
 const { xs } = useDisplay();
-const { user, login, logout, isAuthorised } = useAuthStore();
+const { user, toggleDialog, logout, isAuthorised } = useAuthStore();
 </script>

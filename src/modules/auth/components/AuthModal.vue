@@ -1,6 +1,6 @@
 <template>
   <v-dialog
-    v-model="auth.showDialog"
+    v-model="showDialog"
     width="500"
     @keyup.enter="submit"
   >
@@ -21,9 +21,9 @@
         type="password"
       ></v-text-field>
       <v-sheet class="text-red ma-5">{{
-        auth.errorText === 'Invalid credentials'
+        errorText === 'Invalid credentials'
           ? 'Неправильный логин или пароль'
-          : auth.errorText
+          : errorText
       }}</v-sheet>
       <v-card-actions class="col">
         <v-col>
@@ -88,8 +88,9 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useAuthStore } from '@/stores/auth';
-const auth = useAuthStore();
+import { useAuthStore } from '@/modules/auth';
+// TO-DO: implement form validation
+const { login, register, showDialog, errorText } = useAuthStore();
 const mode = ref('login');
 async function setMode(m: string) {
   mode.value = m;
@@ -100,9 +101,9 @@ const username = ref('');
 
 async function submit() {
   if (mode.value === 'login') {
-    auth.login(username.value, password.value);
+    login(username.value, password.value);
   } else {
-    auth.register(username.value, email.value, password.value);
+    register(username.value, email.value, password.value);
   }
 }
 </script>

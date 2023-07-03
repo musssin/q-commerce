@@ -1,14 +1,14 @@
 <template>
   <v-row class="ma-0">
     <v-col
-      v-if="width > 800"
+      v-if="smAndUp"
       cols="3"
       sm="12"
       md="3"
       class="d-flex flex-wrap"
     >
       <ProductsFilters
-        v-if="width > 800"
+        v-if="smAndUp"
         cols="3"
     /></v-col>
 
@@ -46,7 +46,7 @@ import { DataService } from '@/services/DataService';
 import { useFilterStore } from '@/stores/filters';
 import { ref, onMounted, computed } from 'vue';
 import { useDisplay } from 'vuetify';
-const { width } = useDisplay();
+const { smAndUp } = useDisplay();
 const filterStore = useFilterStore();
 const products = ref(new Array<Product>());
 const loading = ref(false);

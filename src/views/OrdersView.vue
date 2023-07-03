@@ -22,7 +22,7 @@ import Banner from '@/components/BannerTop.vue';
 import OrderItem from '@/components/cards/OrderItem.vue';
 import type Order from '@/entities/Order';
 import { DataService } from '@/services/DataService';
-import { useAuthStore } from '@/stores/auth';
+import { useAuthStore } from '@/modules/auth';
 import { ref, onMounted } from 'vue';
 const orders = ref(Array<Order>());
 const loading = ref(true);

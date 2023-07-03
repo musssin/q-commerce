@@ -1,12 +1,12 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { useStorage } from '@vueuse/core';
-import { useCartStore } from './cart';
+import { useCartStore } from '../../stores/cart';
 import axios from 'axios';
 import User from '@/entities/User';
 export const useAuthStore = defineStore('auth', () => {
   const showDialog = ref(false);
-  const userInstance = User.emptyInstance({});
+  const userInstance = User.emptyInstance();
   const user = useStorage('user', userInstance);
   const cartStore = useCartStore();
   const isAuthorised = useStorage('isAuthorised', ref(false));
@@ -30,7 +30,7 @@ export const useAuthStore = defineStore('auth', () => {
       });
   }
   function logout() {
-    user.value = {};
+    user.value = User.emptyInstance();
     isAuthorised.value = false;
     cartStore.clearCart();
   }

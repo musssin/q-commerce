@@ -73,7 +73,7 @@ import { useDisplay } from 'vuetify';
 import { ref } from 'vue';
 import Product from '../../entities/Product';
 import { useCartStore } from '../../stores/cart';
-import { useAuthStore } from '@/stores/auth';
+import { useAuthStore } from '@/modules/auth';
 const { width } = useDisplay();
 const snackbar = ref(false);
 const snackbarText = ref('');
@@ -93,3 +93,4 @@ defineProps({
   product: Product,
 });
 </script>
+@/modules/auth/auth

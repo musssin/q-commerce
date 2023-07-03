@@ -29,7 +29,7 @@
           <v-btn
             prepend-icon="mdi-menu"
             :density="'compact'"
-            @click="navigation.setDrawer(!navigation.drawer)"
+            @click="setDrawer(!drawer)"
           >
             Меню
           </v-btn>
@@ -47,5 +47,5 @@ import HeaderNavigation from './HeaderNavigation.vue';
 import PaymentModal from '@/components/modals/PaymentModal.vue';
 import { useNavigationStore } from '@/stores/navigation';
 const { smAndUp } = useDisplay();
-const navigation = useNavigationStore();
+const { setDrawer, drawer } = useNavigationStore();
 </script>

@@ -65,7 +65,7 @@ import { useDisplay } from 'vuetify';
 import { ref } from 'vue';
 import { useCartStore } from '../../stores/cart';
 import Order from '@/entities/Order';
-import { useAuthStore } from '@/stores/auth';
+import { useAuthStore } from '@/modules/auth';
 const { width } = useDisplay();
 const loading = ref(false);
 const cart = useCartStore();
@@ -74,3 +74,4 @@ const props = defineProps({
   order: Order,
 });
 </script>
+@/modules/auth/auth

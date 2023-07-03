@@ -1,33 +1,37 @@
 import Cart from '@/entities/Cart';
 import axios from 'axios';
 import Product from '../entities/Product';
-import { useAuthStore } from '@/stores/auth';
+import { useAuthStore } from '@/modules/auth/';
 import Order from '@/entities/Order';
 import type User from '@/entities/User';
+import type { Brand } from '@/entities/Brand';
+import type { Category } from '@/entities/Category';
 export const DataService = {
-  async getCategories(): Promise<Array<String>> {
-    const arr: String[] = [];
+  async getCategories(): Promise<Array<Category>> {
+    let categories = Array<Category>();
     try {
       const response = await axios.get('/products/categories');
-      response.data.forEach((el: String) => {
-        arr.push(el);
-      });
+      categories = response.data.map((el: String) => ({
+        name: el,
+        isSelected: false,
+      }));
     } catch (error) {
       console.log(error);
     }
-    return arr;
+    return categories;
   },
-  async getBrands(): Promise<Array<String>> {
-    const arr: String[] = [];
+  async getBrands(): Promise<Array<Brand>> {
+    let brands = Array<Brand>();
     try {
       const response = await axios.get('/products/brands');
-      response.data.forEach((el: String) => {
-        arr.push(el);
-      });
+      brands = response.data.map((el: String) => ({
+        name: el,
+        isSelected: false,
+      }));
     } catch (error) {
       console.log(error);
     }
-    return arr;
+    return brands;
   },
   async getProducts(): Promise<Array<Product>> {
     const arr: Product[] = [];
@@ -44,7 +48,6 @@ export const DataService = {
     return arr;
   },
   async addProduct(product: Product) {
-    const authStore = useAuthStore();
     try {
       axios.post(`products/add`, JSON.stringify(product));
     } catch (err) {
@@ -52,7 +55,6 @@ export const DataService = {
     }
   },
   async updateProduct(product: Product) {
-    const authStore = useAuthStore();
     try {
       axios.put(`products/${product.id}`, JSON.stringify(product));
     } catch (err) {
@@ -60,7 +62,6 @@ export const DataService = {
     }
   },
   async deleteProduct(id: String) {
-    const authStore = useAuthStore();
     try {
       axios.delete(`products/${id}`);
     } catch (err) {
